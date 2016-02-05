@@ -28,7 +28,7 @@
   </parent>
   <groupId>org.exoplatform.addons.demo</groupId>
   <artifactId>sdp-demo-extension</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>SDP Demo Extension</name>
   <description>SDP (Solution Development Prompte) Demo Extension, based on predefined scenario.</description>
