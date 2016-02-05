@@ -1,0 +1,28 @@
+{
+  "scenarioName":"Com_Knowledge_Management",
+  "description":"An expert Hotel industry contributes content, organizes and tags it. Answers questions. It is then searched and found by an employee",
+  "data": {
+    "users": [
+      {
+        "username": "sam",
+        "firstname": "Sam",
+        "lastname": "Harrison",
+        "password": "gtngtn",
+        "email": "sam.harrison@acme.com",
+        "position": "Account Manager",
+        "isadmin": "false",
+        "avatar": "eXo-Face-Lucas.png"
+      },
+      {
+        "username": "henry",
+        "firstname": "Henry",
+        "lastname": "Smith",
+        "password": "gtngtn",
+        "email": "henry.smith@acme.com",
+        "position": "Senior Consultant",
+        "isadmin": "false",
+        "avatar": "eXo-Face-Bob.png"
+      }
+    ]
+  }
+}

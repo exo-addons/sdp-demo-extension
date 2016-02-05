@@ -1,0 +1,30 @@
+{
+  "scenarioName":"HR_Knowledge_Management",
+  "description":"Design expert guy sharing knowledge items obtained after attending an industry workshop.  Pre-retirement product marketing manager contributes info that proves valuable to employees after her retirement. Corporate communications lady preparing for a press release finds all the info she needs prior to a meeting, saves time going over basics. Sales rep back from maternity leave gets up to speed after searching/finding new key info that was provided while she was away.",
+  "data": {
+    "users":[
+      {
+        "username":"scott",
+        "firstname":"Scott",
+        "lastname":"Wilson",
+        "password":"gtngtn",
+        "email":"scott.wilson@acme.com",
+        "position":"Product Designer",
+        "isadmin":"false",
+        "avatar":"eXo-Face-John.png"
+      },
+      {
+        "username":"kate",
+        "firstname":"Kate",
+        "lastname":"Colombo",
+        "password":"gtngtn",
+        "email":"kate.colombo@acme.com",
+        "position":"Product Marketing Manager",
+        "isadmin":"false",
+        "avatar":"eXo-Face-Mary.png"
+
+      }
+    ]
+  }
+
+}

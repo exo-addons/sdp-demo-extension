@@ -1,57 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Copyright (C) 2009 eXo Platform SAS.
-
-    This is free software; you can redistribute it and/or modify it
-    under the terms of the GNU Lesser General Public License as
-    published by the Free Software Foundation; either version 2.1 of
-    the License, or (at your option) any later version.
-
-    This software is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-    Lesser General Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with this software; if not, write to the Free
-    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
-    02110-1301 USA, or see the FSF site: http://www.fsf.org.
-
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
-    <version>6</version>
+    <version>5</version>
   </parent>
   <groupId>org.exoplatform.addons.demo</groupId>
   <artifactId>sdp-demo-extension</artifactId>
   <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>SDP Demo Extension</name>
-  <description>SDP (Solution Development Prompte) Demo Extension, based on predefined scenario.</description>
   <modules>
-    <module>war</module>
-    <module>packaging</module>
+    <module>sdp-demo-webapp</module>
+    <module>sdp-demo-config</module>
+    <module>sdp-demo-packaging</module>
   </modules>
   <scm>
     <connection>scm:git:git://github.com/exo-addons/sdp-demo-extension.git</connection>
     <developerConnection>scm:git:git@github.com:exo-addons/sdp-demo-extension.git</developerConnection>
-    <tag>HEAD</tag>
     <url>https://github.com/exo-addons/sdp-demo-extension</url>
+    <tag>HEAD</tag>
   </scm>
   <properties>
-    <platform.version>4.3.0</platform.version>
+    <exoplatform.version>4.3.0</exoplatform.version>
+    <juzu.version>1.1.0</juzu.version>
   </properties>
   <dependencyManagement>
     <dependencies>
-      <!-- Import versions from platform project -->
       <dependency>
         <groupId>org.exoplatform.platform</groupId>
         <artifactId>platform</artifactId>
-        <version>${platform.version}</version>
+        <version>${exoplatform.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
