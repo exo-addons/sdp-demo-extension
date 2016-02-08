@@ -23,8 +23,123 @@
         "isadmin":"false",
         "avatar":"eXo-Face-Mary.png"
 
+      },
+      {
+        "username":"philip",
+        "firstname":"Philip",
+        "lastname":"Ivanov",
+        "password":"gtngtn",
+        "email":"philip.ivanov@acme.com",
+        "position":"Sales Account Manager",
+        "isadmin":"false",
+        "avatar":"eXo-Face-Bob.png"
+
+      },
+      {
+        "username":"amanda",
+        "firstname":"Amanda",
+        "lastname":"Jefferson",
+        "password":"gtngtn",
+        "email":"amanda.jefferson@acme.com",
+        "position":"Corporate Comms",
+        "isadmin":"false",
+        "avatar":"eXo-Face-Sarah.png"
+      },
+      {
+        "username":"evan",
+        "firstname":"Evan",
+        "lastname":"McCarthy",
+        "password":"gtngtn",
+        "email":"evan.mccarthy@acme.com",
+        "position":"Sales Manager",
+        "isadmin":"false",
+        "avatar":"eXo-Face-Thomas.png"
+      },
+      {
+        "username":"amber",
+        "firstname":"Amber",
+        "lastname":"Jules",
+        "password":"gtngtn",
+        "email":"amber.jules@acme.com",
+        "position":"Account Manager",
+        "isadmin":"false",
+        "avatar":"eXo-Face-Holly.png"
+      }
+    ],
+    "relations":[
+      {
+        "inviting":"scott",
+        "invited":"kate"
+      },
+      {
+        "inviting":"scott",
+        "invited":"philip",
+        "confirmed":"true"
+      }
+    ],
+    "spaces":[
+      {
+        "displayName": "Product Team",
+        "prettyName": "product_team",
+        "creator": "kate",
+        "avatar": "eXo-Space-Public-color.png",
+        "members":["kate","scott"]
+      },
+      {
+        "displayName": "Sales",
+        "prettyName": "sales",
+        "creator": "evan",
+        "avatar": "eXo-Space-Sales-color.png",
+        "members":["evan","philip","amber"]
+      }
+    ],
+    "calendars":[
+      {
+        "user":"scott",
+        "clearAll":"false",
+        "calendars": [
+          {
+            "name": "Scott Wilson",
+            "color": "powder_blue",
+            "type": "user",
+            "events":[
+              {
+                "title": "Spec Review",
+                "day": "monday",
+                "start": "17:00",
+                "end": "19:00"
+              }
+
+            ]
+          }
+        ]
+      },
+      {
+        "user":"evan",
+        "clearAll":"false",
+        "calendars": [
+          {
+            "name": "Sales",
+            "color": "moss_green",
+            "events":[
+              {
+                "title": "Pipe Review",
+                "day": "monday",
+                "start": "10:00",
+                "end": "11:30"
+              },
+              {
+                "title": "Sales Webinar",
+                "day": "thursday",
+                "start": "11:00",
+                "end": "12:00"
+              }
+
+            ]
+          }
+        ]
       }
     ]
   }
-
 }
+

@@ -13,6 +13,7 @@ import java.util.Collection;
 /**
  * Created by Romain Dénarié (romain.denarie@exoplatform.com) on 04/02/16.
  */
+@SessionScoped
 public class Populator {
 
     /** . */

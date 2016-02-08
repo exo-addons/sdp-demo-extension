@@ -10,8 +10,6 @@ import javax.inject.Named;
 
 import juzu.SessionScoped;
 
-//import org.exoplatform.addons.populator.bean.RelationBean;
-import org.exoplatform.addons.sdpDemo.populator.bean.UserBean;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.services.organization.*;
@@ -67,29 +65,6 @@ public class UserService {
     }
 
   }
-
-  public boolean attachAvatars(List<UserBean> users) {
-    boolean ok = true;
-    for (UserBean user:users)
-    {
-      this.saveUserAvatar(user.getUsername(), user.getAvatar());
-    }
-    return ok;
-  }
-
-  /*public void createRelations(List<RelationBean> relations)
-  {
-    for (RelationBean relation:relations)
-    {
-      Identity idInviting = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getInviting(),false);
-      Identity idInvited = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getInvited(),false);
-      relationshipManager_.inviteToConnect(idInviting, idInvited);
-      if (relation.getConfirm())
-      {
-        relationshipManager_.confirm(idInvited, idInviting);
-      }
-    }
-  }*/
 
   private boolean createUser(String username, String position, String firstname, String lastname, String email, String password, String isAdmin)
   {
@@ -179,6 +154,24 @@ public class UserService {
     catch (Exception e)
     {
       LOG.info(e.getMessage());
+    }
+  }
+
+  public void createRelations(JSONArray relations)
+  {
+    for (int i = 0; i < relations.length(); i++) {
+
+      try {
+        JSONObject relation = relations.getJSONObject(i);
+        Identity idInviting = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getString("inviting"), false);
+        Identity idInvited = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getString("invited"), false);
+        relationshipManager_.inviteToConnect(idInviting, idInvited);
+        if (relation.has("confirmed") && relation.getString("confirmed").equals("true")) {
+          relationshipManager_.confirm(idInvited, idInviting);
+        }
+      }catch (JSONException e) {
+        LOG.error("Syntax error on relation n°" + i, e);
+      }
     }
   }
 }

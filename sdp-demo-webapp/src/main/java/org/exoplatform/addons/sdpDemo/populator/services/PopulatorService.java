@@ -30,13 +30,13 @@ public class PopulatorService {
     @Inject
     UserService userService_;
 
-    /*@Inject
+    @Inject
     SpaceService spaceService_;
 
     @Inject
     CalendarService calendarService_;
 
-    @Inject
+    /*@Inject
     WikiService wikiService_;
 
     @Inject
@@ -81,7 +81,19 @@ public class PopulatorService {
 
         try {
             JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
-            userService_.createUsers((scenarioData.getJSONArray("users")));
+            if (scenarioData.has("users")) {
+                userService_.createUsers(scenarioData.getJSONArray("users"));
+            }
+            if (scenarioData.has("relations")) {
+                userService_.createRelations(scenarioData.getJSONArray("relations"));
+            }
+            if (scenarioData.has("spaces")) {
+                spaceService_.createSpaces(scenarioData.getJSONArray("spaces"));
+            }
+            if (scenarioData.has("calendars")) {
+                calendarService_.setCalendarColors(scenarioData.getJSONArray("calendars"));
+                calendarService_.createEvents(scenarioData.getJSONArray("calendars"));
+            }
         } catch (JSONException e) {
             LOG.error("Syntax error when reading scenario "+scenarioName,e);
         }
