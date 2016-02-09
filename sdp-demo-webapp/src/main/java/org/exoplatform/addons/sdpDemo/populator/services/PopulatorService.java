@@ -36,17 +36,17 @@ public class PopulatorService {
     @Inject
     CalendarService calendarService_;
 
-    /*@Inject
+    @Inject
     WikiService wikiService_;
 
-    @Inject
-    ForumService forumService_;
+    /*@Inject
+    ForumService forumService_;*/
 
     @Inject
     DocumentService documentService_;
 
     @Inject
-    ActivityService activityService_;*/
+    ActivityService activityService_;
 
     private Map<String, JSONObject> scenarios;
 
@@ -82,17 +82,35 @@ public class PopulatorService {
         try {
             JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
             if (scenarioData.has("users")) {
+                LOG.info("Create "+scenarioData.getJSONArray("users").length()+" users.");
                 userService_.createUsers(scenarioData.getJSONArray("users"));
+
             }
             if (scenarioData.has("relations")) {
+                LOG.info("Create "+scenarioData.getJSONArray("relations").length()+" relations.");
                 userService_.createRelations(scenarioData.getJSONArray("relations"));
             }
             if (scenarioData.has("spaces")) {
+                LOG.info("Create "+scenarioData.getJSONArray("spaces").length()+" spaces.");
                 spaceService_.createSpaces(scenarioData.getJSONArray("spaces"));
             }
             if (scenarioData.has("calendars")) {
+                LOG.info("Create "+scenarioData.getJSONArray("calendars").length()+" calendars.");
                 calendarService_.setCalendarColors(scenarioData.getJSONArray("calendars"));
                 calendarService_.createEvents(scenarioData.getJSONArray("calendars"));
+            }
+            if (scenarioData.has("wikis")) {
+                LOG.info("Create "+scenarioData.getJSONArray("wikis").length()+" wikis.");
+                wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"));
+            }
+            if (scenarioData.has("activities")) {
+
+                LOG.info("Create "+scenarioData.getJSONArray("activities").length()+" activities.");
+                activityService_.pushActivities(scenarioData.getJSONArray("activities"));
+            }
+            if (scenarioData.has("documents")) {
+                LOG.info("Create "+scenarioData.getJSONArray("documents").length()+" documents.");
+                documentService_.uploadDocuments(scenarioData.getJSONArray("documents"));
             }
         } catch (JSONException e) {
             LOG.error("Syntax error when reading scenario "+scenarioName,e);

@@ -95,7 +95,7 @@ public class CalendarService {
           String username = calendarObject.getString("user");
           Map<String, String> map = getCalendarsMap(username);
 
-          if (calendarObject.has("clearAll") && calendarObject.getString("clearAll").equals("true")) {
+          if (calendarObject.has("clearAll") && calendarObject.getBoolean("clearAll")) {
             removeAllEvents(username);
           }
           JSONArray userCalendars = calendarObject.getJSONArray("calendars");

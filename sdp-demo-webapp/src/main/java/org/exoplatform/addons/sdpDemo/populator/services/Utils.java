@@ -1,9 +1,13 @@
 package org.exoplatform.addons.sdpDemo.populator.services;
 
+import org.apache.commons.io.IOExceptionWithCause;
+import org.apache.commons.io.IOUtils;
 import org.exoplatform.social.core.image.ImageUtils;
 import org.exoplatform.social.core.model.AvatarAttachment;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.Calendar;
 
 /**
@@ -66,4 +70,28 @@ public class Utils {
         Integer minutes = Integer.parseInt(start[1]);
         return minutes;
     }
+
+    public static String getWikiPage(String fileName) throws IOException
+    {
+        if (fileName.equals("")) {
+            return "";
+        }
+        InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/contents/"+fileName);
+
+        StringWriter writer = new StringWriter();
+        IOUtils.copy(inputStream, writer);
+
+        return writer.toString();
+    }
+
+    public static InputStream getFile(String fileName) throws IOException
+    {
+
+        if (fileName.equals("")) {
+            return null;
+        }
+        InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/documents/"+fileName);
+        return inputStream;
+    }
+
 }

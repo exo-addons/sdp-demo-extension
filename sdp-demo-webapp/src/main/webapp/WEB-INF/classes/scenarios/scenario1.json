@@ -74,7 +74,7 @@
       {
         "inviting":"scott",
         "invited":"philip",
-        "confirmed":"true"
+        "confirmed":true
       }
     ],
     "spaces":[
@@ -96,7 +96,7 @@
     "calendars":[
       {
         "user":"scott",
-        "clearAll":"false",
+        "clearAll":false,
         "calendars": [
           {
             "name": "Scott Wilson",
@@ -138,6 +138,160 @@
             ]
           }
         ]
+      }
+    ],
+    "wikis":[
+      {
+        "title": "WikiHome",
+        "type": "portal",
+        "owner": "intranet",
+        "filename": "wiki-home.txt",
+        "wikis": [
+          {
+            "title": "Activity Stream Engagement",
+            "filename": "activity-stream-engagement.txt",
+            "owner": "intranet",
+            "type": "portal",
+            "new": true
+          },
+          {
+            "title": "How-To Guide",
+            "filename": "how-to-guide.txt",
+            "owner": "intranet",
+            "type": "portal",
+            "new": true
+          },
+          {
+            "title": "Leave Planning",
+            "filename": "leave-planning.txt",
+            "owner": "intranet",
+            "type": "portal",
+            "new": true
+          },
+          {
+            "title": "Meeting Notes",
+            "owner": "intranet",
+            "type": "portal",
+            "wikis:": [
+              {
+                "title": "0107 Company Meeting",
+                "type": "portal",
+                "owner": "intranet"
+              },
+              {
+                "title": "0114 Company Meeting",
+                "type": "portal",
+                "owner": "intranet",
+                "wikis": [
+                  {
+                    "title": "Attachments",
+                    "type": "portal",
+                    "owner": "intranet"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "General Knowledge",
+            "parent": "WikiHome",
+            "owner": "intranet",
+            "type": "portal",
+            "wikis": [
+              {
+                "title": "New in the Company",
+                "type": "portal",
+                "owner": "intranet"
+              },
+              {
+                "title": "Intranet Team Organization",
+                "type": "portal",
+                "owner": "intranet"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "WikiHome",
+        "type": "group",
+        "owner": "/spaces/product_team",
+        "filename": "wiki-home.txt",
+        "wikis": [
+          {
+            "title": "Sofware Vendors",
+            "type": "group",
+            "owner": "/spaces/product_team"
+          },
+          {
+            "title": "Employee Onboarding",
+            "type": "group",
+            "owner": "/spaces/product_team"
+          },
+          {
+            "title": "Web Design Proposals",
+            "type": "group",
+            "owner": "/spaces/product_team"
+          }
+        ]
+      }
+
+
+    ],
+    "activities":[
+      {
+        "from":"scott",
+        "body": "I'm with @amber at Paris",
+        "likes":["amber","evan"],
+        "comments":[
+          {
+            "from":"amber",
+            "body": "Nice coffee at Paris"
+          }
+        ]
+
+      },
+      {
+        "from": "kate",
+        "body": "Don't forget our Public Webinar next week",
+        "likes":["scott","amber","amanda","evan"],
+        "comments": [
+          {
+            "from": "scott",
+            "body": "in the main room?"
+          },
+          {
+            "from": "kate",
+            "body": "yes and it will be also shared online"
+          },
+          {
+            "from": "amanda",
+            "body": "btw @kate , remind me to send a formal invitation"
+          },
+          {
+            "from": "kate",
+            "body": "of course @amanda"
+          }
+        ]
+      }
+    ],
+    "documents":[
+      {
+        "filename":"Presentation - Q2-2016 Sales Targets.pptx",
+        "owner":"evan",
+        "isPrivate":false,
+        "spaceName":"sales"
+      },
+      {
+        "filename":"Emerging Trends in Cosmetics Design.pdf",
+        "owner":"scott",
+        "isPrivate":false,
+        "spaceName":"product_team"
+      },
+      {
+        "filename":"Best Practices in Cosmetics Design.pdf",
+        "owner":"scott",
+        "isPrivate":true
       }
     ]
   }

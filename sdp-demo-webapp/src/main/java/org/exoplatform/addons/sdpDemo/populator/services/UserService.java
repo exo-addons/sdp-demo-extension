@@ -166,7 +166,7 @@ public class UserService {
         Identity idInviting = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getString("inviting"), false);
         Identity idInvited = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, relation.getString("invited"), false);
         relationshipManager_.inviteToConnect(idInviting, idInvited);
-        if (relation.has("confirmed") && relation.getString("confirmed").equals("true")) {
+        if (relation.has("confirmed") && relation.getBoolean("confirmed")) {
           relationshipManager_.confirm(idInvited, idInviting);
         }
       }catch (JSONException e) {
