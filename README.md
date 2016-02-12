@@ -59,12 +59,12 @@ Each data category is optional.
 }
 ```
 
-**username** is the user login
-**firstname** and **lastname** will be combined to create the displayName, here : "Scott Wilson"
-**password** will be used to log in the platform
-**position** will be stored in the user profile 
-**isAdmin** says if user is member of /platform/administrators group
-**avatar** is the user image. This image is stored in /WEB-INF/classes/medias/images/
+**username** is the user login<br />
+**firstname** and **lastname** will be combined to create the displayName, here : "Scott Wilson"<br />
+**password** will be used to log in the platform<br />
+**position** will be stored in the user profile <br />
+**isAdmin** says if user is member of /platform/administrators group<br />
+**avatar** is the user image. This image is stored in /WEB-INF/classes/medias/images/<br />
 
 # Relations
 **relations** described the relations between users to create in the platform :
@@ -76,9 +76,9 @@ Each data category is optional.
 }
 ```
 
-**inviting** is the user which make the request
-**invited** is the user which receive the request
-**confirmed** says if the request is already validated or not. This parameter is optional.
+**inviting** is the user which make the request<br />
+**invited** is the user which receive the request<br />
+**confirmed** says if the request is already validated or not. This parameter is optional.<br />
 
 # Spaces
 **spaces** described spaces to create:
@@ -91,10 +91,10 @@ Each data category is optional.
 }
 ```
 
-**displayName** is the visible name of the space
-**creator** is manager of the space
-**avatar** define the image with is the space avatar. The image is stored in /WEB-INF/classes/medias/images/
-**members** describe which users are members of the space. Members must be described in "users" part.
+**displayName** is the visible name of the space<br />
+**creator** is manager of the space<br />
+**avatar** define the image with is the space avatar. The image is stored in /WEB-INF/classes/medias/images/<br />
+**members** describe which users are members of the space. Members must be described in "users" part.<br />
  
 # Calendars
 **calendars** defines calendars to create, and event to add.
@@ -119,16 +119,16 @@ Each data category is optional.
     ]
 }
 ```
-**user** define the owner of calendars
-**clearAll** : optionnal : if set to true, all existing events for theses calendars will be removed.
-**calendars** defines the calendars to add :
-    **type** define the type of the calendar : if type is "user", the calendar is the user private calendar, else, or if not present, calendar is a public calendar (like space calendar)
-    **name** is the owner of the calendar : if type=user, name contains the name of a use rof the platforme. Else, name contains, the name of the space which own the calendar.
-    **color** defines the color of the calendar
-    **events** define the events to add in the calendar.
-        **title** is the name of the event
-        **day** is the day on which the event will be added. If this value is "monday", the event will be added on the next monday.
-        **start** and **end** define the start hour and the end hour of the event.
+**user** define the owner of calendars<br />
+**clearAll** : optionnal : if set to true, all existing events for theses calendars will be removed.<br />
+**calendars** defines the calendars to add :<br />
+    + **type** define the type of the calendar : if type is "user", the calendar is the user private calendar, else, or if not present, calendar is a public calendar (like space calendar)<br />
+    + **name** is the owner of the calendar : if type=user, name contains the name of a use rof the platforme. Else, name contains, the name of the space which own the calendar.<br />
+    + **color** defines the color of the calendar<br />
+    + **events** define the events to add in the calendar.<br />
+        ++ **title** is the name of the event<br />
+        ++ **day** is the day on which the event will be added. If this value is "monday", the event will be added on the next monday.<br />
+        ++ **start** and **end** define the start hour and the end hour of the event.<br />
         
 Here an example to add event in a space calendar : notice the calendar name, "Sales". Events will be added in Sales space calendar.
 ```
