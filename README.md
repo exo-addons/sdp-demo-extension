@@ -23,10 +23,10 @@ To create new scenario, add a json file in WEB-INF/classes/medias/scenarios. The
 }
 ```
 
-**scenarioName** is the name of the scenario
-**description** is used to describe the scenario
-**scriptData** is optional. It is a file, stored in /WEB-INF/classes/medias/scriptData/. This file can be downloaded at the end of the populating, and contains all stuff needed for running the scenario script, like wiki page content, read to be copy/pasted, documents to upload ...
-Then, anywhere, without any support, you can find all contents to run the demo.
+**scenarioName** is the name of the scenario<br />
+**description** is used to describe the scenario<br />
+**scriptData** is optional. It is a file, stored in /WEB-INF/classes/medias/scriptData/. This file can be downloaded at the end of the populating, and contains all stuff needed for running the scenario script, like wiki page content, read to be copy/pasted, documents to upload ...<br />
+Then, anywhere, without any support, you can find all contents to run the demo.<br />
 
 **data** contains the scenario datas :
 ```
