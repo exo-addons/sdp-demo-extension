@@ -34,7 +34,7 @@
                     context: this,
                     success: function (data) {
                         console.log(data);
-                        clear(refreshInterval);
+                        clearInterval(refreshInterval);
                         refresh();
                         if (data.downloadUrl && data.downloadUrl!= "") {
                             $(".scenarioResultContent").html("Scenario datas correctly populated. Content to run the scenario script are available to <a href='"+data.downloadUrl+"'>download here</a>.")
@@ -43,7 +43,9 @@
                         $(".btn-start").removeClass("disabled");
                     },
                     error: function (data) {
-                        console.log("error in server call "+data);
+                        $("#error").show();
+                        $(".btn-start").removeClass("disabled");
+
                     }
                 });
             }

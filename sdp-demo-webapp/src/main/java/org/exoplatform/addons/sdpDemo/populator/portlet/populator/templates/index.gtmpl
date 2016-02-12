@@ -81,6 +81,10 @@ import org.json.JSONObject;
             </div>
          </div>
 
+         <div class="alert alert-danger hide" id="error">
+            Error when populating scenario. Check logs and scenario descriptor.
+         </div>
+
 
          <div class="scenarioResult hide">
             <label>Scenario Populating Result :</label><br/>
