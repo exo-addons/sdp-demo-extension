@@ -1,3 +1,7 @@
+<%
+import org.json.JSONArray;
+import org.json.JSONObject;
+%>
 <div id="populator_div">
     <div class="uiGrayLightBox clearfix no-user-selection">
         <h3>SDP Demo Populator Application</h3>
@@ -12,10 +16,77 @@
          <%scenarios.each { scenario -> %>
             <div class="scenarioDescription hide" id="description-${scenario.getString("scenarioName")}">
                 <label>Scenario Description :</label><br/>
-                ${scenario.getString("description")}
+                ${scenario.getString("description")}<br/>
+
+                <label>Scenario Content :</label><br/>
+                <%
+                    JSONObject data=scenario.getJSONObject("data");
+                    if (data.has("users")) {
+                        JSONArray users = data.getJSONArray("users");
+                %>
+                        Users :<br/>
+                        <ul>
+                <%
+                             for (int i = 0; i<users.length();i++) {
+                                JSONObject user = users.getJSONObject(i);
+                %>
+                                <li>${user.getString("firstname")} ${user.getString("lastname")} : ${user.getString("position")} (${user.getString("username")}/${user.getString("password")})</li>
+                <%
+                             }
+                %>
+                        </ul>
+                <%
+
+                    }
+                    if (data.has("spaces")) {
+                        JSONArray spaces = data.getJSONArray("spaces");
+                %>
+                        Spaces :<br/>
+                        <ul>
+                <%
+                             for (int i = 0; i<spaces.length();i++) {
+                                JSONObject space = spaces.getJSONObject(i);
+                %>
+                                <li>${space.getString("displayName")}, Manager : ${space.getString("creator")}, Members :
+
+                <%
+                                for (int j=0;j<space.getJSONArray("members").length();j++) {
+                %>
+                                    ${space.getJSONArray("members").getString(j)}
+                <%
+                                    if (j<space.getJSONArray("members").length()-1) {
+                %>
+                                        ,
+                <%
+                                    }
+                                }
+                %>
+                                </li>
+                <%
+                             }
+                %>
+                        </ul>
+                <%
+
+                    }
+                %>
+
             </div>
 
          <%}%>
+
+         <div class="progressionContainer hide">
+            <label>Progression :</label><br/>
+            <div class="container elements-container">
+            </div>
+         </div>
+
+
+         <div class="scenarioResult hide">
+            <label>Scenario Populating Result :</label><br/>
+            <span class="scenarioResultContent"></span>
+
+         </div>
 
 
 

@@ -16,6 +16,7 @@ import javax.jcr.Session;
 
 import juzu.SessionScoped;
 
+import org.exoplatform.addons.sdpDemo.populator.portlet.populator.Populator;
 import org.exoplatform.services.jcr.RepositoryService;
 import org.exoplatform.services.jcr.ext.app.SessionProviderService;
 import org.exoplatform.services.jcr.ext.common.SessionProvider;
@@ -57,7 +58,7 @@ public class DocumentService {
   }
 
 
-  public void uploadDocuments(JSONArray documents)
+  public void uploadDocuments(JSONArray documents, PopulatorService populatorService_)
   {
     for (int i =0;i<documents.length();i++) {
       try {
@@ -67,8 +68,10 @@ public class DocumentService {
         String path = document.has("path") ? document.getString("path") : null;
         boolean isPrivate = document.getBoolean("isPrivate");
         String spaceName = document.has("spaceName") ? document.getString("spaceName") : "";
-        storeFile(filename,spaceName,isPrivate,null,owner,path,"collaboration");
+        storeFile(filename,spaceName,isPrivate,null,owner,path,"collaboration","documents");
          //createOrEditPage(wiki, wiki.has("parent") ? wiki.getString("parent") : "");
+
+        populatorService_.setCompletion(populatorService_.DOCUMENTS,((i+1)*100)/documents.length());
       } catch (JSONException e) {
         LOG.error("Syntax error on document n°" + i, e);
 
@@ -76,7 +79,7 @@ public class DocumentService {
     }
   }
 
-  protected void storeFile(String filename, String name, boolean isPrivateContext, String uuid, String username, String path, String workspace)
+  protected void storeFile(String filename, String name, boolean isPrivateContext, String uuid, String username, String path, String workspace, String fileType)
   {
     SessionProvider sessionProvider = null;
     if (!"root".equals(username)) {
@@ -115,7 +118,7 @@ public class DocumentService {
       {
         Node fileNode = docNode.addNode(filename, "nt:file");
         Node jcrContent = fileNode.addNode("jcr:content", "nt:resource");
-        InputStream inputStream = Utils.getFile(filename);
+        InputStream inputStream = Utils.getFile(filename, fileType);
         jcrContent.setProperty("jcr:data", inputStream);
         jcrContent.setProperty("jcr:lastModified", Calendar.getInstance());
         jcrContent.setProperty("jcr:encoding", "UTF-8");
@@ -143,6 +146,9 @@ public class DocumentService {
           jcrContent.setProperty("jcr:mimeType", "application/vnd.oasis.opendocument.text");
         else if (filename.endsWith(".ods"))
           jcrContent.setProperty("jcr:mimeType", "application/vnd.oasis.opendocument.spreadsheet");
+        else if (filename.endsWith(".zip")) {
+          jcrContent.setProperty("jcr:mimeType", "application/zip");
+        }
         session.save();
         if (!"root".equals(username)) {
           listenerService_.broadcast(FILE_CREATED_ACTIVITY, null, fileNode);
@@ -159,7 +165,7 @@ public class DocumentService {
     endSession();
   }
 
-  protected void storeVideos(String filename, String name, boolean isPrivateContext, String uuid, String username, String path, String workspace, String type) {
+  protected void storeVideos(String filename, String name, boolean isPrivateContext, String uuid, String username, String path, String workspace, String type, String fileType) {
 
     SessionProvider sessionProvider = startSessionAs(username);
 
@@ -178,7 +184,7 @@ public class DocumentService {
       if (!docNode.hasNode(filename) && (uuid==null || "---".equals(uuid))) {
         Node fileNode = docNode.addNode(filename, "nt:file");
         Node jcrContent = fileNode.addNode("jcr:content", "nt:resource");
-        InputStream inputStream = Utils.getFile(filename);
+        InputStream inputStream = Utils.getFile(filename,fileType);
         jcrContent.setProperty("jcr:data", inputStream);
         jcrContent.setProperty("jcr:lastModified", Calendar.getInstance());
         jcrContent.setProperty("jcr:encoding", "UTF-8");
@@ -230,5 +236,41 @@ public class DocumentService {
   protected void endSession() {
     sessionProviderService_.removeSessionProvider(null);
     ConversationState.setCurrent(null);
+  }
+
+  public String storeScript(String scriptData) {
+    removeFileIfExists(scriptData,"root", "/Application Data", "collaboration");
+    storeFile(scriptData, scriptData, true, null, "root", "/Application Data", "collaboration", "scriptData");
+    return ("/rest/jcr/repository/collaboration/Application Data/"+scriptData);
+
+  }
+
+  private void removeFileIfExists(String filename, String username, String path, String workspace) {
+    SessionProvider sessionProvider = null;
+    if (!"root".equals(username)) {
+      sessionProvider = startSessionAs(username);
+    } else {
+      sessionProvider = SessionProvider.createSystemProvider();
+    }
+
+    try {
+      Session session = sessionProvider.getSession(workspace, repositoryService_.getCurrentRepository());
+
+      Node docNode;
+      if (path != null) {
+        Node rootNode = session.getRootNode();
+        docNode = rootNode.getNode(path.substring(1));
+        if (docNode.hasNode(filename)) {
+          docNode = docNode.getNode(filename);
+          docNode.remove();
+          session.save();
+        }
+      }
+
+    }catch (Exception e) {
+      LOG.error("Error when removing file "+path+"/"+filename,e);
+    }
+    endSession();
+
   }
 }

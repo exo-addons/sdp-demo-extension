@@ -84,14 +84,15 @@ public class Utils {
         return writer.toString();
     }
 
-    public static InputStream getFile(String fileName) throws IOException
+    public static InputStream getFile(String fileName, String fileType) throws IOException
     {
 
         if (fileName.equals("")) {
             return null;
         }
-        InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/documents/"+fileName);
+        InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/"+fileType+"/"+fileName);
         return inputStream;
     }
+
 
 }

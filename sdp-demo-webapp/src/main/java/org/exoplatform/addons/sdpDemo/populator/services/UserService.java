@@ -50,7 +50,7 @@ public class UserService {
     relationshipManager_ = relationshipManager;
   }
 
-  public void createUsers(JSONArray users) {
+  public void createUsers(JSONArray users, PopulatorService populatorService_) {
 
     for (int i = 0; i < users.length(); i++) {
       try {
@@ -59,6 +59,8 @@ public class UserService {
                 user.getString("firstname"), user.getString("lastname"),
                 user.getString("email"), user.getString("password"), user.getString("isadmin"));
         saveUserAvatar(user.getString("username"),user.getString("avatar"));
+        populatorService_.setCompletion(populatorService_.USERS,((i+1)*100)/users.length());
+
       } catch (JSONException e) {
         LOG.error("Syntax error on user n°" + i, e);
       }

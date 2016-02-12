@@ -39,8 +39,8 @@ public class PopulatorService {
     @Inject
     WikiService wikiService_;
 
-    /*@Inject
-    ForumService forumService_;*/
+    @Inject
+    ForumService forumService_;
 
     @Inject
     DocumentService documentService_;
@@ -49,6 +49,15 @@ public class PopulatorService {
     ActivityService activityService_;
 
     private Map<String, JSONObject> scenarios;
+
+    Map<String, Integer> completion = new HashMap<String, Integer>();
+    public final String USERS = "Users";
+    public final String SPACES = "Spaces";
+    public final String CALENDAR = "Calendar";
+    public final String WIKI = "Wiki";
+    public final String DOCUMENTS = "Documents";
+    public final String FORUM = "Forum";
+    public final String ACTIVITIES = "Activities";
 
 
     public PopulatorService() {
@@ -74,16 +83,32 @@ public class PopulatorService {
         } catch (URISyntaxException e) {
             LOG.error("Unable to read scenario file", e);
         }
+
+        completion.put(USERS, 0);
+        completion.put(SPACES, 0);
+        completion.put(CALENDAR, 0);
+        completion.put(WIKI, 0);
+        completion.put(DOCUMENTS, 0);
+        completion.put(FORUM, 0);
+        completion.put(ACTIVITIES, 0);
     }
 
 
-    public void populate(String scenarioName) {
+    public String populate(String scenarioName) {
+        completion.put(USERS, 0);
+        completion.put(SPACES, 0);
+        completion.put(CALENDAR, 0);
+        completion.put(WIKI, 0);
+        completion.put(DOCUMENTS, 0);
+        completion.put(FORUM, 0);
+        completion.put(ACTIVITIES, 0);
 
+        String downloadUrl ="";
         try {
             JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
             if (scenarioData.has("users")) {
                 LOG.info("Create "+scenarioData.getJSONArray("users").length()+" users.");
-                userService_.createUsers(scenarioData.getJSONArray("users"));
+                userService_.createUsers(scenarioData.getJSONArray("users"),this);
 
             }
             if (scenarioData.has("relations")) {
@@ -92,30 +117,40 @@ public class PopulatorService {
             }
             if (scenarioData.has("spaces")) {
                 LOG.info("Create "+scenarioData.getJSONArray("spaces").length()+" spaces.");
-                spaceService_.createSpaces(scenarioData.getJSONArray("spaces"));
+                spaceService_.createSpaces(scenarioData.getJSONArray("spaces"), this);
             }
             if (scenarioData.has("calendars")) {
                 LOG.info("Create "+scenarioData.getJSONArray("calendars").length()+" calendars.");
-                calendarService_.setCalendarColors(scenarioData.getJSONArray("calendars"));
-                calendarService_.createEvents(scenarioData.getJSONArray("calendars"));
+                calendarService_.setCalendarColors(scenarioData.getJSONArray("calendars"),this);
+                calendarService_.createEvents(scenarioData.getJSONArray("calendars"),this);
             }
             if (scenarioData.has("wikis")) {
                 LOG.info("Create "+scenarioData.getJSONArray("wikis").length()+" wikis.");
-                wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"));
+                wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), this);
             }
             if (scenarioData.has("activities")) {
 
                 LOG.info("Create "+scenarioData.getJSONArray("activities").length()+" activities.");
-                activityService_.pushActivities(scenarioData.getJSONArray("activities"));
+                activityService_.pushActivities(scenarioData.getJSONArray("activities"), this);
             }
             if (scenarioData.has("documents")) {
                 LOG.info("Create "+scenarioData.getJSONArray("documents").length()+" documents.");
-                documentService_.uploadDocuments(scenarioData.getJSONArray("documents"));
+                documentService_.uploadDocuments(scenarioData.getJSONArray("documents"),this);
             }
+            if (scenarioData.has("forums")) {
+                forumService_.createForumContents(scenarioData.getJSONArray("forums"), this);
+            }
+
+            if (scenarios.get(scenarioName).has("scriptData")) {
+                downloadUrl = documentService_.storeScript(scenarios.get(scenarioName).getString("scriptData"));
+            }
+
+
         } catch (JSONException e) {
             LOG.error("Syntax error when reading scenario "+scenarioName,e);
         }
 
+        return downloadUrl;
     }
 
     public String getData(InputStream inputStream) {
@@ -135,4 +170,26 @@ public class PopulatorService {
     public Map<String, JSONObject> getScenarios() {
         return scenarios;
     }
+
+    public void setCompletion(String category, int value) {
+        completion.put(category,value);
+    }
+
+    public String getCompletionAsJson()
+    {
+        StringBuilder sb = new StringBuilder() ;
+        sb.append("[");
+        boolean first = true;
+        for (String key:completion.keySet())
+        {
+            if (!first) sb.append(",");
+            sb.append("{\"name\": \""+key+"\",");
+            sb.append("\"percentage\": \""+completion.get(key)+"%\"}");
+            first = false;
+        }
+        sb.append("]");
+
+        return sb.toString();
+    }
+
 }

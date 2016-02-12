@@ -38,7 +38,7 @@ public class CalendarService {
     organizationService_ = organizationService;
   }
 
-  public void setCalendarColors(JSONArray calendars)
+  public void setCalendarColors(JSONArray calendars, PopulatorService populatorService_)
   {
     for (int i = 0; i<calendars.length(); i++) {
       try {
@@ -80,11 +80,13 @@ public class CalendarService {
         LOG.error("Syntax error on calendar n°" + i, e);
 
       }
+      //we loop on calendars twice, so, completion is adapted
+      populatorService_.setCompletion(populatorService_.CALENDAR,((i+1)*100)/(calendars.length()*2));
 
     }
   }
 
-  public void createEvents(JSONArray calendars)
+  public void createEvents(JSONArray calendars, PopulatorService populatorService_)
   {
 
     try {
@@ -115,6 +117,8 @@ public class CalendarService {
           LOG.error("Syntax error on calendar n°" + i, e);
 
         }
+        //we loop on calendars twice, so, completion is adapted
+        populatorService_.setCompletion(populatorService_.CALENDAR,((i+1+calendars.length())*100)/(calendars.length()*2));
       }
 
     } catch (Exception e) {

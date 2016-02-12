@@ -1,6 +1,7 @@
 {
   "scenarioName":"HR_Knowledge_Management",
   "description":"Design expert guy sharing knowledge items obtained after attending an industry workshop.  Pre-retirement product marketing manager contributes info that proves valuable to employees after her retirement. Corporate communications lady preparing for a press release finds all the info she needs prior to a meeting, saves time going over basics. Sales rep back from maternity leave gets up to speed after searching/finding new key info that was provided while she was away.",
+  "scriptData":"sdp-demo-extension.zip",
   "data": {
     "users":[
       {
@@ -293,6 +294,58 @@
         "owner":"scott",
         "isPrivate":true
       }
+    ],
+    "forums":[
+      {
+        "categoryTitle":"General",
+        "owner":"scott",
+        "description":"General Category",
+        "forums":[
+          {
+            "forumTitle":"Public discussions",
+            "owner":"scott",
+            "description":"General Forum",
+            "topics":[
+              {
+                "topicTitle":"How to use this forum ?",
+                "owner":"scott",
+                "content":"This is the content of the message.",
+                "posts": [
+                  {
+                    "content":"You're right !",
+                    "owner" : "kate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "categoryTitle":"spaces",
+        "owner":"scott",
+        "description":"Spaces Forum category",
+        "forums":[
+          {
+            "forumTitle":"Sales",
+            "owner":"scott",
+            "description":"Sales Space forum",
+            "topics":[
+              {
+                "topicTitle":"Sales Result for 2015",
+                "owner":"evan",
+                "content":"Nice sales result on 2015.",
+                "posts": [
+                  {
+                    "content":"Will be better this year :)",
+                    "owner" : "philip"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
     ]
   }
 }

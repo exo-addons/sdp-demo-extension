@@ -40,7 +40,7 @@ public class SpaceService {
     identityManager_ = identityManager;
   }
 
-  public void createSpaces(JSONArray spaces)
+  public void createSpaces(JSONArray spaces, PopulatorService populatorService_)
   {
     for (int i = 0; i < spaces.length(); i++) {
 
@@ -58,6 +58,8 @@ public class SpaceService {
           }
         }
         createSpaceAvatar(space.getString("displayName"), space.getString("creator"), space.getString("avatar"));
+        populatorService_.setCompletion(populatorService_.SPACES,((i+1)*100)/spaces.length());
+
       }catch (JSONException e) {
         LOG.error("Syntax error on space n°" + i, e);
       }

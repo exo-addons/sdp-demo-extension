@@ -1,6 +1,5 @@
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,8 +28,6 @@ public class ActivityService {
   ActivityManager activityManager_;
   IdentityManager identityManager_;
 
-  Random random = new Random();
-
   @Inject
   public ActivityService(ActivityManager activityManager, IdentityManager identityManager)
   {
@@ -38,13 +35,14 @@ public class ActivityService {
     identityManager_ = identityManager;
   }
 
-  public void pushActivities(JSONArray activities)
+  public void pushActivities(JSONArray activities, PopulatorService populatorService_)
   {
 
     for (int i =0;i<activities.length();i++) {
       try {
         JSONObject activity = activities.getJSONObject(i);
         pushActivity(activity);
+        populatorService_.setCompletion(populatorService_.ACTIVITIES,((i+1)*100)/activities.length());
       } catch (JSONException e) {
         LOG.error("Syntax error on activity n°" + i, e);
 

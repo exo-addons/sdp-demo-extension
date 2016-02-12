@@ -35,12 +35,13 @@ public class WikiService {
     wikiService_ = wikiService;
   }
 
-  public void createUserWiki(JSONArray wikis)
+  public void createUserWiki(JSONArray wikis, PopulatorService populatorService_)
   {
     for (int i =0;i<wikis.length();i++) {
       try {
         JSONObject wiki = wikis.getJSONObject(i);
         createOrEditPage(wiki, wiki.has("parent") ? wiki.getString("parent") : "");
+        populatorService_.setCompletion(populatorService_.WIKI,((i+1)*100)/wikis.length());
       } catch (JSONException e) {
         LOG.error("Syntax error on wiki n°" + i, e);
 

@@ -7,7 +7,6 @@ import org.exoplatform.addons.sdpDemo.populator.services.PopulatorService;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -38,11 +37,19 @@ public class Populator {
     @Resource
     public Response.Content populate(String scenarioName)
     {
-        populatorService_.populate(scenarioName);
+        String downloadUrl = populatorService_.populate(scenarioName);
         StringBuilder sb = new StringBuilder() ;
-        sb.append("{\"status\": \"OK\"}");
+        sb.append("{\"status\": \"OK\",\"downloadUrl\": \""+downloadUrl+"\"}");
+
         return Response.ok(sb.toString()).withMimeType("application/json; charset=UTF-8").withHeader("Cache-Control", "no-cache");
     }
+    @Ajax
+    @Resource
+    public Response.Content elements()
+    {
+        return Response.ok(populatorService_.getCompletionAsJson()).withMimeType("application/json; charset=UTF-8").withHeader("Cache-Control", "no-cache");
+    }
+
 
 
 }
