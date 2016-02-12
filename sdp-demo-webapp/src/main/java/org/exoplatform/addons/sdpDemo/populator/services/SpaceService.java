@@ -46,7 +46,7 @@ public class SpaceService {
 
       try {
         JSONObject space = spaces.getJSONObject(i);
-        createSpace(space.getString("displayName"), space.getString("prettyName"), space.getString("creator"));
+        createSpace(space.getString("displayName"), space.getString("creator"));
         if (space.has("members")) {
           JSONArray  members = space.getJSONArray("members");
           for (int j = 0; j < members.length(); j++) {
@@ -83,7 +83,7 @@ public class SpaceService {
     }
   }
 
-  private void createSpace(String name, String prettyName, String creator)
+  private void createSpace(String name, String creator)
   {
     Space target = spaceService_.getSpaceByDisplayName(name);
     if (target!=null)
@@ -94,7 +94,7 @@ public class SpaceService {
     Space space = new Space();
 //    space.setId(name);
     space.setDisplayName(name);
-    space.setPrettyName(prettyName);
+    space.setPrettyName(name);
     space.setDescription(StringUtils.EMPTY);
     space.setGroupId("/spaces/" + space.getPrettyName());
     space.setRegistration(Space.OPEN);
