@@ -33,7 +33,6 @@
                     },
                     context: this,
                     success: function (data) {
-                        console.log(data);
                         clearInterval(refreshInterval);
                         refresh();
                         if (data.downloadUrl && data.downloadUrl!= "") {
