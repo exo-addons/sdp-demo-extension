@@ -284,5 +284,5 @@ For forum, you will be able to define category, forums, topics, and posts
  * **owner** is the name of the topic creator
  * **description** is the description of the topic
  * **posts** define a list of posts to create
-  * **content** : the content of the post
-  * **owner** the author of the post
+   * **content** : the content of the post
+    * **owner** the author of the post
