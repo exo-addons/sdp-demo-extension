@@ -122,13 +122,13 @@ Each data category is optional.
 **user** define the owner of calendars<br />
 **clearAll** : optionnal : if set to true, all existing events for theses calendars will be removed.<br />
 **calendars** defines the calendars to add :<br />
-    + **type** define the type of the calendar : if type is "user", the calendar is the user private calendar, else, or if not present, calendar is a public calendar (like space calendar)<br />
-    + **name** is the owner of the calendar : if type=user, name contains the name of a use rof the platforme. Else, name contains, the name of the space which own the calendar.<br />
-    + **color** defines the color of the calendar<br />
-    + **events** define the events to add in the calendar.<br />
-        ++ **title** is the name of the event<br />
-        ++ **day** is the day on which the event will be added. If this value is "monday", the event will be added on the next monday.<br />
-        ++ **start** and **end** define the start hour and the end hour of the event.<br />
+* **type** define the type of the calendar : if type is "user", the calendar is the user private calendar, else, or if not present, calendar is a public calendar (like space calendar)<br />
+* **name** is the owner of the calendar : if type=user, name contains the name of a use rof the platforme. Else, name contains, the name of the space which own the calendar.<br />
+* **color** defines the color of the calendar<br />
+* **events** define the events to add in the calendar.<br />
+ * **title** is the name of the event<br />
+ * **day** is the day on which the event will be added. If this value is "monday", the event will be added on the next monday.<br />
+ * **start** and **end** define the start hour and the end hour of the event.<br />
         
 Here an example to add event in a space calendar : notice the calendar name, "Sales". Events will be added in Sales space calendar.
 ```
@@ -220,8 +220,8 @@ For subpages, parent is not necessary
 **body** is the content of the activity
 **likes** is a list of user which have liked the activity
 **comments** define a list of comments under the activity
-    **from** is the author of the comment
-    **body** is the content of the comment
+* **from** is the author of the comment
+* **body** is the content of the comment
     
     
 #Documents
@@ -276,13 +276,13 @@ For forum, you will be able to define category, forums, topics, and posts
 **owner** is the name of the category creator
 **description** is the description of the category
 **forums** define a list of forums to create in the category
-    **forumTitle** define the name of the forum to create. If exists, the forum is not recreated.
-    **owner** is the name of the forum creator
-    **description** is the description of the forum
-    **topics** define a list of topics to create
-        **topicTitle** define the name of the topic to create. If exists, the topic is not recreated.
-        **owner** is the name of the topic creator
-        **description** is the description of the topic
-        **posts** define a list of posts to create
-            **content** : the content of the post
-            **owner** the author of the post
+* **forumTitle** define the name of the forum to create. If exists, the forum is not recreated.
+* **owner** is the name of the forum creator
+* **description** is the description of the forum
+* **topics** define a list of topics to create
+ * **topicTitle** define the name of the topic to create. If exists, the topic is not recreated.
+ * **owner** is the name of the topic creator
+ * **description** is the description of the topic
+ * **posts** define a list of posts to create
+  * **content** : the content of the post
+  * **owner** the author of the post
