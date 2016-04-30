@@ -102,7 +102,7 @@
         "email": "julian@acme.com",
         "position": "Marketing Trainee",
         "isadmin": "false",
-        "avatar": "Julian Brown.png"
+        "avatar": "Julian_Brown.png"
       },
       {
         "username": "jack",
@@ -322,7 +322,7 @@
         "email": "andy@acme.com",
         "position": "Procurement Manager",
         "isadmin": "false",
-        "avatar": "Procurement Manager.png"
+        "avatar": "Andy_Fox.png"
       }
     ],
     "relations": [
