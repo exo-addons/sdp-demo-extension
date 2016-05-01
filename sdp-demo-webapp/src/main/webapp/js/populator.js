@@ -36,7 +36,7 @@
                         clearInterval(refreshInterval);
                         refresh();
                         if (data.downloadUrl && data.downloadUrl!= "") {
-                            $(".scenarioResultContent").html("Scenario datas correctly populated. Content to run the scenario script are available to <a href='"+data.downloadUrl+"'>download here</a>.")
+                            $(".scenarioResultContent").html("Scenario datas correctly populated. Content to run the scenario script are available to <a href='"+data.downloadUrl+"'>download here</a>.");
                             $(".scenarioResult").show();
                         }
                         $(".btn-start").removeClass("disabled");

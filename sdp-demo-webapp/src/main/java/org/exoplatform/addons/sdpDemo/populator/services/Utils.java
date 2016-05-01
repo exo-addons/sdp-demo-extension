@@ -18,9 +18,8 @@ public class Utils {
     public static AvatarAttachment getAvatarAttachment(String fileName) throws Exception
     {
         String mimeType = "image/png";
-        int WIDTH = 200;
+        int WIDTH = 120;
         InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/images/"+fileName);
-
         // Resize avatar to fixed width if can't(avatarAttachment == null) keep
         // origin avatar
         AvatarAttachment avatarAttachment = ImageUtils.createResizedAvatarAttachment(inputStream,
@@ -38,7 +37,6 @@ public class Utils {
                     null,
                     System.currentTimeMillis());
         }
-
         return avatarAttachment;
     }
 
