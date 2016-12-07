@@ -96,7 +96,7 @@ import org.json.JSONObject;
 
         <span style="float: right;">
             <a type="button" class="btn btn-primary pull-right btn-start disabled" title="Start">
-                <i class="icon-fire icon-white"></i> Start Populating
+                <i class="icon-fire icon-white" style="background-image: url('/eXoSkin/skin/bootstrap/img/glyphicons-halflings-white.png')"></i> Start Populating
             </a>
         </span>
     </div>
