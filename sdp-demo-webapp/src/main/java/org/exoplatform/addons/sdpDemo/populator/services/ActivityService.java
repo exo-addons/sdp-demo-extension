@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2003-2016 eXo Platform SAS.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
 
@@ -18,16 +36,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * The Class ActivityService.
+ */
 @Named("activityService")
 @SessionScoped
 public class ActivityService {
 
+  /** The log. */
   private final Log LOG = ExoLogger.getLogger(ActivityService.class);
 
 
+  /** The activity manager. */
   ActivityManager activityManager_;
+  
+  /** The identity manager. */
   IdentityManager identityManager_;
 
+  /**
+   * Instantiates a new activity service.
+   *
+   * @param activityManager the activity manager
+   * @param identityManager the identity manager
+   */
   @Inject
   public ActivityService(ActivityManager activityManager, IdentityManager identityManager)
   {
@@ -35,6 +66,12 @@ public class ActivityService {
     identityManager_ = identityManager;
   }
 
+  /**
+   * Push activities.
+   *
+   * @param activities the activities
+   * @param populatorService_ the populator service
+   */
   public void pushActivities(JSONArray activities, PopulatorService populatorService_)
   {
 
@@ -55,6 +92,12 @@ public class ActivityService {
     //likeRandomActivities(Utils.JAMES);
   }
 
+  /**
+   * Push activity.
+   *
+   * @param activityJSON the activity JSON
+   * @throws Exception the exception
+   */
   private void pushActivity(JSONObject activityJSON) throws Exception
   {
 
@@ -65,7 +108,9 @@ public class ActivityService {
     activity.setTitle(activityJSON.getString("body"));
     activity.setUserId(identity.getId());
     activity.setType("DEFAULT_ACTIVITY");
-    activity = activityManager_.saveActivity(identity, activity);
+    // TODO cleanup
+    //activity = activityManager_.saveActivity(identity, activity);
+    activityManager_.saveActivityNoReturn(identity, activity);
 
     Thread.sleep(1000);
     JSONArray likes = activityJSON.getJSONArray("likes");

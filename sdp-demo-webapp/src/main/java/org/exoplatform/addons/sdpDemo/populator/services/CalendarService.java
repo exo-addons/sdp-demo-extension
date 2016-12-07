@@ -1,19 +1,29 @@
+/*
+ * Copyright (C) 2003-2016 eXo Platform SAS.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
 package org.exoplatform.addons.sdpDemo.populator.services;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import juzu.SessionScoped;
 
-
-import org.exoplatform.calendar.service.EventQuery;
 import org.exoplatform.calendar.service.Calendar;
 import org.exoplatform.calendar.service.CalendarEvent;
 import org.exoplatform.calendar.service.CalendarSetting;
+import org.exoplatform.calendar.service.EventQuery;
 import org.exoplatform.calendar.service.GroupCalendarData;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
@@ -23,14 +33,35 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+/**
+ * The Class CalendarService.
+ */
 @Named("calendarService")
 @SessionScoped
 public class CalendarService {
 
+  /** The calendar service. */
   org.exoplatform.calendar.service.CalendarService calendarService_;
+  
+  /** The organization service. */
   OrganizationService organizationService_;
+  
+  /** The log. */
   private final Log LOG = ExoLogger.getLogger(CalendarService.class);
 
+  /**
+   * Instantiates a new calendar service.
+   *
+   * @param calendarService the calendar service
+   * @param organizationService the organization service
+   */
   @Inject
   public CalendarService(org.exoplatform.calendar.service.CalendarService calendarService, OrganizationService organizationService)
   {
@@ -38,6 +69,12 @@ public class CalendarService {
     organizationService_ = organizationService;
   }
 
+  /**
+   * Sets the calendar colors.
+   *
+   * @param calendars the calendars
+   * @param populatorService_ the populator service
+   */
   public void setCalendarColors(JSONArray calendars, PopulatorService populatorService_)
   {
     for (int i = 0; i<calendars.length(); i++) {
@@ -86,6 +123,12 @@ public class CalendarService {
     }
   }
 
+  /**
+   * Creates the events.
+   *
+   * @param calendars the calendars
+   * @param populatorService_ the populator service
+   */
   public void createEvents(JSONArray calendars, PopulatorService populatorService_)
   {
 
@@ -126,6 +169,20 @@ public class CalendarService {
     }
   }
 
+  /**
+   * Save event.
+   *
+   * @param username the username
+   * @param isUserEvent the is user event
+   * @param calId the cal id
+   * @param summary the summary
+   * @param day the day
+   * @param fromHour the from hour
+   * @param fromMin the from min
+   * @param toHour the to hour
+   * @param toMin the to min
+   * @throws Exception the exception
+   */
   private void saveEvent(String username, boolean isUserEvent, String calId, String summary,
                          int day, int fromHour, int fromMin, int toHour, int toMin) throws Exception
   {
@@ -150,6 +207,12 @@ public class CalendarService {
       calendarService_.savePublicEvent(calId, event, true);
   }
 
+  /**
+   * Removes the all events.
+   *
+   * @param username the username
+   * @throws Exception the exception
+   */
   private void removeAllEvents(String username) throws Exception
   {
     List<CalendarEvent> events = getEvents(username);
@@ -166,6 +229,12 @@ public class CalendarService {
     }
   }
 
+  /**
+   * Gets the calendars map.
+   *
+   * @param username the username
+   * @return the calendars map
+   */
   private Map<String, String> getCalendarsMap(String username)
   {
     Map<String, String> map = new HashMap<String, String>();
@@ -183,6 +252,12 @@ public class CalendarService {
     return map;
   }
 
+  /**
+   * Gets the calendars id list.
+   *
+   * @param username the username
+   * @return the calendars id list
+   */
   private String[] getCalendarsIdList(String username) {
     StringBuilder sb = new StringBuilder();
     List<GroupCalendarData> listgroupCalendar = null;
@@ -206,6 +281,12 @@ public class CalendarService {
   }
 
 
+  /**
+   * Gets the events.
+   *
+   * @param username the username
+   * @return the events
+   */
   private List<CalendarEvent> getEvents(String username) {
     String[] calList = getCalendarsIdList(username);
 
@@ -224,6 +305,13 @@ public class CalendarService {
     return userEvents;
   }
 
+  /**
+   * Gets the user groups.
+   *
+   * @param username the username
+   * @return the user groups
+   * @throws Exception the exception
+   */
   private String[] getUserGroups(String username) throws Exception {
 
     Object[] objs = organizationService_.getGroupHandler().findGroupsOfUser(username).toArray();

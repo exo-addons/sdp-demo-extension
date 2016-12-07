@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
 
-    Copyright (C) 2009 eXo Platform SAS.
+    Copyright (C) 2016 eXo Platform SAS.
     
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -19,23 +19,20 @@
     02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
   -->
-
-
-  <page-set>
-
-    <page>
-      <name>demo</name>
-      <title>demo</title>
-      <access-permissions>*:/platform/administrators</access-permissions>
-      <edit-permission>*:/platform/administrators</edit-permission>
-      <show-max-window>false</show-max-window>
-      <portlet-application>
-        <portlet>
-          <application-ref>sdp-demo-extension</application-ref>
-          <portlet-ref>PopulatorApplication</portlet-ref>
-        </portlet>
-        <access-permissions>Everyone</access-permissions>
-        <show-info-bar>false</show-info-bar>
-      </portlet-application>
-    </page>
-  </page-set>
+<page-set>
+  <page>
+    <name>demo</name>
+    <title>demo</title>
+    <access-permissions>*:/platform/administrators</access-permissions>
+    <edit-permission>*:/platform/administrators</edit-permission>
+    <show-max-window>false</show-max-window>
+    <portlet-application>
+      <portlet>
+        <application-ref>sdp-demo-extension</application-ref>
+        <portlet-ref>PopulatorApplication</portlet-ref>
+      </portlet>
+      <access-permissions>Everyone</access-permissions>
+      <show-info-bar>false</show-info-bar>
+    </portlet-application>
+  </page>
+</page-set>
