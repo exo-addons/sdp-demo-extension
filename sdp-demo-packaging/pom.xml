@@ -8,23 +8,15 @@
   </parent>
   <artifactId>sdp-demo-extension-packaging</artifactId>
   <packaging>pom</packaging>
-  <name>SDP Demo Extension - Packaging</name>
   <dependencies>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>sdp-demo-webapp</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
-      <type>war</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>sdp-demo-config</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
-      <type>jar</type>
-      <scope>provided</scope>
-    </dependency>
+  <dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>sdp-demo-webapp</artifactId>
+    <type>war</type>
+    <scope>provided</scope>
+  </dependency>
   </dependencies>
+  <name>SDP Demo Extension - Packaging</name>
   <build>
     <finalName>sdp-demo-extension</finalName>
     <plugins>
