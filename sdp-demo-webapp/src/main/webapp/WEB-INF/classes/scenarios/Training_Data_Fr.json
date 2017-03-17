@@ -51,6 +51,19 @@
         "invited": "smailly",
         "confirmed": true
       }
+    ],
+    "spaces": [
+      {
+        "displayName": "Discussions Générales",
+        "creator": "cbouvier",
+        "avatar": "Marketing.png",
+        "members": [
+          "cbouvier",
+          "grenaud",
+          "smailly",
+          "nbellemare"
+        ]
+      }
     ]
   }
 }
