@@ -18,20 +18,17 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.portlet.populator;
 
-import juzu.Path;
-import juzu.Resource;
-import juzu.Response;
-import juzu.SessionScoped;
-import juzu.View;
-import juzu.plugin.ajax.Ajax;
-import juzu.template.Template;
-
-import org.exoplatform.addons.sdpDemo.populator.services.PopulatorService;
-import org.json.JSONObject;
-
 import java.util.Collection;
 
 import javax.inject.Inject;
+
+import org.json.JSONObject;
+
+import org.exoplatform.addons.sdpDemo.populator.services.PopulatorService;
+
+import juzu.*;
+import juzu.plugin.ajax.Ajax;
+import juzu.template.Template;
 
 /**
  * Created by Romain Dénarié (romain.denarie@exoplatform.com) on 04/02/16.
@@ -72,8 +69,7 @@ public class Populator {
     StringBuilder sb = new StringBuilder();
     sb.append("{\"status\": \"OK\",\"downloadUrl\": \"" + downloadUrl + "\"}");
 
-    return Response.ok(sb.toString()).withMimeType("application/json; charset=UTF-8").withHeader("Cache-Control",
-                                                                                                 "no-cache");
+    return Response.ok(sb.toString()).withMimeType("application/json; charset=UTF-8").withHeader("Cache-Control", "no-cache");
   }
 
   /**

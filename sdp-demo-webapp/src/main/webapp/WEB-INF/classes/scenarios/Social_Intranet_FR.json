@@ -1,7 +1,7 @@
 {
-  "scenarioName": "Company_Intranet_FR",
-  "description": "Company Intranet - Mixte des fonctionnalités WCM et Social - FR",
-  "scenarioData": "Company_Intranet_FR.zip",
+  "scenarioName": "Social_Intranet_FR",
+  "description": "Social Intranet - FR",
+  "scenarioData": "Social_Intranet_FR.zip",
   "data": {
     "users": [
       {

@@ -1,6 +1,6 @@
-(function($) {
+(function ($) {
 
-    $( function () {
+    $(function () {
         $("#selectScenario").change(function () {
             $("#selectScenario option:not(:selected)").each(function () {
                 $("#description-" + $(this).val()).hide();
@@ -35,8 +35,8 @@
                     success: function (data) {
                         clearInterval(refreshInterval);
                         refresh();
-                        if (data.downloadUrl && data.downloadUrl!= "") {
-                            $(".scenarioResultContent").html("Scenario datas correctly populated. Content to run the scenario script are available to <a href='"+data.downloadUrl+"'>download here</a>.");
+                        if (data.downloadUrl && data.downloadUrl != "") {
+                            $(".scenarioResultContent").html("Scenario datas correctly populated. Content to run the scenario script are available to <a href='" + data.downloadUrl + "'>download here</a>.");
                             $(".scenarioResult").show();
                         }
                         $(".btn-start").removeClass("disabled");
@@ -73,16 +73,16 @@
 
         function updateElementsContainer(elements) {
             var html = "";
-            for (ie=0 ; ie<elements.length ; ie++) {
+            for (ie = 0; ie < elements.length; ie++) {
                 var element = elements[ie];
 
                 html += '<div class="row">';
                 html += '  <div class="span1">';
-                html += '    <label>'+element.name+'</label>';
+                html += '    <label>' + element.name + '</label>';
                 html += '  </div>';
                 html += '  <div class="span6">';
                 html += '    <div class="progress">';
-                html += '      <div class="bar" style="width: '+element.percentage+';"></div>';
+                html += '      <div class="bar" style="width: ' + element.percentage + ';"></div>';
                 html += '    </div>';
                 html += '  </div>';
                 html += '</div>';
@@ -92,7 +92,7 @@
             }
         }
 
-        var refreshInterval = setInterval(refresh,3000);
+        var refreshInterval = setInterval(refresh, 3000);
     });
 
 })(jQuery);

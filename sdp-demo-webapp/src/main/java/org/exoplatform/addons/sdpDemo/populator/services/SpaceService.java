@@ -18,9 +18,14 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.social.core.identity.model.Identity;
@@ -30,12 +35,8 @@ import org.exoplatform.social.core.model.AvatarAttachment;
 import org.exoplatform.social.core.space.SpaceUtils;
 import org.exoplatform.social.core.space.impl.DefaultSpaceApplicationHandler;
 import org.exoplatform.social.core.space.model.Space;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import juzu.SessionScoped;
 
 /**
  * The Class SpaceService.
@@ -44,14 +45,14 @@ import javax.inject.Named;
 @SessionScoped
 public class SpaceService {
 
+  /** The log. */
+  private final Log                                  LOG = ExoLogger.getLogger(SpaceService.class);
+
   /** The space service. */
   org.exoplatform.social.core.space.spi.SpaceService spaceService_;
 
   /** The identity manager. */
   IdentityManager                                    identityManager_;
-
-  /** The log. */
-  private final Log                                  LOG = ExoLogger.getLogger(SpaceService.class);
 
   /**
    * Instantiates a new space service.
@@ -71,7 +72,7 @@ public class SpaceService {
    * @param spaces the spaces
    * @param populatorService_ the populator service
    */
-  public void createSpaces(JSONArray spaces, PopulatorService populatorService_) {
+  public void createSpaces(JSONArray spaces, String scenario, PopulatorService populatorService_) {
     for (int i = 0; i < spaces.length(); i++) {
 
       try {
@@ -87,7 +88,7 @@ public class SpaceService {
 
           }
         }
-        createSpaceAvatar(space.getString("displayName"), space.getString("creator"), space.getString("avatar"));
+        createSpaceAvatar(space.getString("displayName"), space.getString("creator"), space.getString("avatar"), scenario);
         populatorService_.setCompletion(populatorService_.SPACES, ((i + 1) * 100) / spaces.length());
 
       } catch (JSONException e) {
@@ -103,15 +104,18 @@ public class SpaceService {
    * @param editor the editor
    * @param avatarFile the avatar file
    */
-  private void createSpaceAvatar(String name, String editor, String avatarFile) {
+  private void createSpaceAvatar(String name, String editor, String avatarFile, String scenario) {
     Space space = spaceService_.getSpaceByDisplayName(name);
     if (space != null) {
       try {
-        AvatarAttachment avatarAttachment = Utils.getAvatarAttachment(avatarFile);
-        space.setAvatarAttachment(avatarAttachment);
-        spaceService_.updateSpace(space);
         space.setEditor(editor);
-        spaceService_.updateSpaceAvatar(space);
+        AvatarAttachment avatarAttachment = Utils.getAvatarAttachment(avatarFile, scenario);
+        if (avatarAttachment != null) {
+          space.setAvatarAttachment(avatarAttachment);
+          spaceService_.updateSpace(space);
+          spaceService_.updateSpaceAvatar(space);
+        } else
+          spaceService_.updateSpace(space);
       } catch (Exception e) {
         LOG.error("Unable to set avatar for space " + space.getDisplayName(), e.getMessage());
       }

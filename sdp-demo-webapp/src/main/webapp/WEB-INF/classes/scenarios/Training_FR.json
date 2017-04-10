@@ -1,9 +1,9 @@
 {
-  "scenarioName": "Training_Data_Fr",
+  "scenarioName": "Training_FR",
   "description": "Données nécessaire à la réalisation du Training Administrateur fonctionnel",
-  "scriptData": "Training_Data_Fr.zip",
+  "scenarioData": "Training_FR.zip",
   "data": {
-    "users":[
+    "users": [
       {
         "username": "cbouvier",
         "firstname": "Christian",
@@ -64,6 +64,34 @@
           "nbellemare"
         ]
       }
+    ] ,
+    "contents": [
+      {
+        "filename": "homeNews.xml",
+        "targetPath": "/sites/intranet/web contents/site artifacts",
+        "cleanupPublication": true
+      }
+    ],
+    "wikis": [
+    {
+    "title": "General Knowledge",
+    "parent": "WikiHome",
+    "owner": "intranet",
+    "type": "portal",
+    "filename": "activity-stream-engagement.txt",
+    "wikis": [
+        {
+            "title": "New in the Company",
+            "type": "portal",
+            "owner": "intranet"
+        },
+        {
+            "title": "Intranet Team Organization",
+            "type": "portal",
+            "owner": "intranet"
+        }
     ]
+}
+    ]    
   }
 }

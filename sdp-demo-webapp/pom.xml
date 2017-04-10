@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>sdp-demo-extension</artifactId>
@@ -18,32 +18,21 @@
         <dependency>
             <groupId>org.juzu</groupId>
             <artifactId>juzu-core</artifactId>
-            <version>${juzu.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.juzu</groupId>
-            <artifactId>juzu-core</artifactId>
-            <version>${juzu.version}</version>
-            <classifier>sources</classifier>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.juzu</groupId>
             <artifactId>juzu-plugins-less</artifactId>
-            <version>${juzu.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.juzu</groupId>
             <artifactId>juzu-plugins-portlet</artifactId>
-            <version>${juzu.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.juzu</groupId>
             <artifactId>juzu-plugins-upload</artifactId>
-            <version>${juzu.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -77,11 +66,11 @@
             <artifactId>forum-forum-service</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- dependency>
-            <groupId>org.exoplatform.forum</groupId>
-            <artifactId>forum-poll-service</artifactId>
+        <dependency>
+            <groupId>org.exoplatform.ecms</groupId>
+            <artifactId>ecms-core-publication</artifactId>
             <scope>provided</scope>
-        </dependency -->
+        </dependency>
     </dependencies>
 
     <build>

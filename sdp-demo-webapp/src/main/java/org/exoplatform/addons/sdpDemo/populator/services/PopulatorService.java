@@ -18,12 +18,6 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import org.apache.commons.io.IOUtils;
-import org.exoplatform.services.log.ExoLogger;
-import org.exoplatform.services.log.Log;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,10 +28,41 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
+
 /**
  * Created by Romain Dénarié (romain.denarie@exoplatform.com) on 04/02/16.
  */
 public class PopulatorService {
+
+  /** The users. */
+  public final String             USERS                          = "Users";
+
+  /** The spaces. */
+  public final String             SPACES                         = "Spaces";
+
+  /** The calendar. */
+  public final String             CALENDAR                       = "Calendar";
+
+  /** The wiki. */
+  public final String             WIKI                           = "Wiki";
+
+  /** The documents. */
+  public final String             DOCUMENTS                      = "Documents";
+
+  /** The forum. */
+  public final String             FORUM                          = "Forum";
+
+  /** The forum. */
+  public final String             WCM                            = "Wcm";
+
+  /** The activities. */
+  public final String             ACTIVITIES                     = "Activities";
 
   /** The log. */
   private final Log               LOG                            = ExoLogger.getLogger(PopulatorService.class);
@@ -75,36 +100,19 @@ public class PopulatorService {
   @Inject
   DocumentService                 documentService_;
 
+  /** The wcm service. */
+  @Inject
+  WcmService                      wcmservice_;
+
   /** The activity service. */
   @Inject
   ActivityService                 activityService_;
 
-  /** The scenarios. */
-  private Map<String, JSONObject> scenarios;
-
   /** The completion. */
   Map<String, Integer>            completion                     = new HashMap<String, Integer>();
 
-  /** The users. */
-  public final String             USERS                          = "Users";
-
-  /** The spaces. */
-  public final String             SPACES                         = "Spaces";
-
-  /** The calendar. */
-  public final String             CALENDAR                       = "Calendar";
-
-  /** The wiki. */
-  public final String             WIKI                           = "Wiki";
-
-  /** The documents. */
-  public final String             DOCUMENTS                      = "Documents";
-
-  /** The forum. */
-  public final String             FORUM                          = "Forum";
-
-  /** The activities. */
-  public final String             ACTIVITIES                     = "Activities";
+  /** The scenarios. */
+  private Map<String, JSONObject> scenarios;
 
   /**
    * Instantiates a new populator service.
@@ -142,6 +150,7 @@ public class PopulatorService {
     completion.put(WIKI, 0);
     completion.put(DOCUMENTS, 0);
     completion.put(FORUM, 0);
+    completion.put(WCM, 0);
     completion.put(ACTIVITIES, 0);
   }
 
@@ -158,6 +167,7 @@ public class PopulatorService {
     completion.put(WIKI, 0);
     completion.put(DOCUMENTS, 0);
     completion.put(FORUM, 0);
+    completion.put(WCM, 0);
     completion.put(ACTIVITIES, 0);
 
     String downloadUrl = "";
@@ -165,7 +175,7 @@ public class PopulatorService {
       JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
       if (scenarioData.has("users")) {
         LOG.info("Create " + scenarioData.getJSONArray("users").length() + " users.");
-        userService_.createUsers(scenarioData.getJSONArray("users"), this);
+        userService_.createUsers(scenarioData.getJSONArray("users"), scenarioName, this);
 
       }
       if (scenarioData.has("relations")) {
@@ -174,7 +184,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
-        spaceService_.createSpaces(scenarioData.getJSONArray("spaces"), this);
+        spaceService_.createSpaces(scenarioData.getJSONArray("spaces"), scenarioName, this);
       }
       if (scenarioData.has("calendars")) {
         LOG.info("Create " + scenarioData.getJSONArray("calendars").length() + " calendars.");
@@ -183,7 +193,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
-        wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), this);
+        wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), scenarioName, this);
       }
       if (scenarioData.has("activities")) {
 
@@ -192,14 +202,18 @@ public class PopulatorService {
       }
       if (scenarioData.has("documents")) {
         LOG.info("Create " + scenarioData.getJSONArray("documents").length() + " documents.");
-        documentService_.uploadDocuments(scenarioData.getJSONArray("documents"), this);
+        documentService_.uploadDocuments(scenarioData.getJSONArray("documents"), scenarioName, this);
+      }
+      if (scenarioData.has("contents")) {
+        LOG.info("Create " + scenarioData.getJSONArray("contents").length() + " contents.");
+        wcmservice_.uploadWebContents(scenarioData.getJSONArray("contents"), scenarioName, this);
       }
       if (scenarioData.has("forums")) {
         forumService_.createForumContents(scenarioData.getJSONArray("forums"), this);
       }
 
-      if (scenarios.get(scenarioName).has("scriptData")) {
-        downloadUrl = documentService_.storeScript(scenarios.get(scenarioName).getString("scriptData"));
+      if (scenarios.get(scenarioName).has("scenario_data")) {
+        downloadUrl = documentService_.storeScript(scenarios.get(scenarioName).getString("scenario_data"), scenarioName);
       }
 
     } catch (JSONException e) {
@@ -223,7 +237,8 @@ public class PopulatorService {
       out = writer.toString();
 
     } catch (IOException e) {
-      e.printStackTrace(); // To change body of catch statement use File | Settings | File Templates.
+      e.printStackTrace(); // To change body of catch statement use File |
+                           // Settings | File Templates.
     }
 
     return out;

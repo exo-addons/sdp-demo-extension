@@ -18,27 +18,24 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
-
-import org.exoplatform.calendar.service.Calendar;
-import org.exoplatform.calendar.service.CalendarEvent;
-import org.exoplatform.calendar.service.CalendarSetting;
-import org.exoplatform.calendar.service.EventQuery;
-import org.exoplatform.calendar.service.GroupCalendarData;
-import org.exoplatform.services.log.ExoLogger;
-import org.exoplatform.services.log.Log;
-import org.exoplatform.services.organization.Group;
-import org.exoplatform.services.organization.OrganizationService;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import org.exoplatform.calendar.service.*;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
+import org.exoplatform.services.organization.Group;
+import org.exoplatform.services.organization.OrganizationService;
+
+import juzu.SessionScoped;
 
 /**
  * The Class CalendarService.
@@ -47,14 +44,14 @@ import javax.inject.Named;
 @SessionScoped
 public class CalendarService {
 
+  /** The log. */
+  private final Log                                LOG = ExoLogger.getLogger(CalendarService.class);
+
   /** The calendar service. */
   org.exoplatform.calendar.service.CalendarService calendarService_;
-  
+
   /** The organization service. */
-  OrganizationService organizationService_;
-  
-  /** The log. */
-  private final Log LOG = ExoLogger.getLogger(CalendarService.class);
+  OrganizationService                              organizationService_;
 
   /**
    * Instantiates a new calendar service.
@@ -63,8 +60,8 @@ public class CalendarService {
    * @param organizationService the organization service
    */
   @Inject
-  public CalendarService(org.exoplatform.calendar.service.CalendarService calendarService, OrganizationService organizationService)
-  {
+  public CalendarService(org.exoplatform.calendar.service.CalendarService calendarService,
+                         OrganizationService organizationService) {
     calendarService_ = calendarService;
     organizationService_ = organizationService;
   }
@@ -75,9 +72,8 @@ public class CalendarService {
    * @param calendars the calendars
    * @param populatorService_ the populator service
    */
-  public void setCalendarColors(JSONArray calendars, PopulatorService populatorService_)
-  {
-    for (int i = 0; i<calendars.length(); i++) {
+  public void setCalendarColors(JSONArray calendars, PopulatorService populatorService_) {
+    for (int i = 0; i < calendars.length(); i++) {
       try {
         JSONObject calendarObject = calendars.getJSONObject(i);
         String username = calendarObject.getString("user");
@@ -107,7 +103,7 @@ public class CalendarService {
           }
           if (filtered != null) {
             CalendarSetting setting = calendarService_.getCalendarSetting(username);
-            setting.setFilterPublicCalendars(new String[]{filtered});
+            setting.setFilterPublicCalendars(new String[] { filtered });
             calendarService_.saveCalendarSetting(username, setting);
           }
         } catch (Exception e) {
@@ -117,8 +113,8 @@ public class CalendarService {
         LOG.error("Syntax error on calendar n°" + i, e);
 
       }
-      //we loop on calendars twice, so, completion is adapted
-      populatorService_.setCompletion(populatorService_.CALENDAR,((i+1)*100)/(calendars.length()*2));
+      // we loop on calendars twice, so, completion is adapted
+      populatorService_.setCompletion(populatorService_.CALENDAR, ((i + 1) * 100) / (calendars.length() * 2));
 
     }
   }
@@ -129,12 +125,11 @@ public class CalendarService {
    * @param calendars the calendars
    * @param populatorService_ the populator service
    */
-  public void createEvents(JSONArray calendars, PopulatorService populatorService_)
-  {
+  public void createEvents(JSONArray calendars, PopulatorService populatorService_) {
 
     try {
 
-      for (int i = 0; i<calendars.length(); i++) {
+      for (int i = 0; i < calendars.length(); i++) {
         try {
           JSONObject calendarObject = calendars.getJSONObject(i);
           String username = calendarObject.getString("user");
@@ -148,24 +143,30 @@ public class CalendarService {
             JSONObject userCalendar = userCalendars.getJSONObject(j);
             JSONArray events = userCalendar.getJSONArray("events");
             for (int k = 0; k < events.length(); k++) {
-              JSONObject event =events.getJSONObject(k);
-              saveEvent(username, userCalendar.has("type") && userCalendar.getString("type").equals("user"), map.get(userCalendar.getString("name")),
-                      event.getString("title"), Utils.getDayAsInt(event.getString("day")),
-                      Utils.getHourAsInt(event.getString("start")),  Utils.getMinuteAsInt(event.getString("start")),
-                      Utils.getHourAsInt(event.getString("end")),
-                      Utils.getMinuteAsInt(event.getString("end")));
+              JSONObject event = events.getJSONObject(k);
+              saveEvent(username,
+                        userCalendar.has("type") && userCalendar.getString("type").equals("user"),
+                        map.get(userCalendar.getString("name")),
+                        event.getString("title"),
+                        Utils.getDayAsInt(event.getString("day")),
+                        Utils.getHourAsInt(event.getString("start")),
+                        Utils.getMinuteAsInt(event.getString("start")),
+                        Utils.getHourAsInt(event.getString("end")),
+                        Utils.getMinuteAsInt(event.getString("end")));
             }
           }
         } catch (JSONException e) {
           LOG.error("Syntax error on calendar n°" + i, e);
 
         }
-        //we loop on calendars twice, so, completion is adapted
-        populatorService_.setCompletion(populatorService_.CALENDAR,((i+1+calendars.length())*100)/(calendars.length()*2));
+        // we loop on calendars twice, so, completion is adapted
+        populatorService_.setCompletion(populatorService_.CALENDAR,
+                                        ((i + 1 + calendars.length()) * 100) / (calendars.length() * 2));
       }
 
     } catch (Exception e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+      e.printStackTrace(); // To change body of catch statement use File |
+                           // Settings | File Templates.
     }
   }
 
@@ -183,16 +184,22 @@ public class CalendarService {
    * @param toMin the to min
    * @throws Exception the exception
    */
-  private void saveEvent(String username, boolean isUserEvent, String calId, String summary,
-                         int day, int fromHour, int fromMin, int toHour, int toMin) throws Exception
-  {
+  private void saveEvent(String username,
+                         boolean isUserEvent,
+                         String calId,
+                         String summary,
+                         int day,
+                         int fromHour,
+                         int fromMin,
+                         int toHour,
+                         int toMin) throws Exception {
     CalendarEvent event = new CalendarEvent();
     event.setCalendarId(calId);
     event.setSummary(summary);
     event.setEventType(CalendarEvent.TYPE_EVENT);
     event.setRepeatType(CalendarEvent.RP_NOREPEAT);
     event.setPrivate(isUserEvent);
-      java.util.Calendar calendar =java.util.Calendar.getInstance();
+    java.util.Calendar calendar = java.util.Calendar.getInstance();
     calendar.setTimeInMillis(calendar.getTime().getTime());
     calendar.set(java.util.Calendar.DAY_OF_WEEK, day);
     calendar.set(java.util.Calendar.HOUR_OF_DAY, fromHour);
@@ -213,17 +220,12 @@ public class CalendarService {
    * @param username the username
    * @throws Exception the exception
    */
-  private void removeAllEvents(String username) throws Exception
-  {
+  private void removeAllEvents(String username) throws Exception {
     List<CalendarEvent> events = getEvents(username);
-    for (CalendarEvent event:events)
-    {
-      if (event.isPrivate())
-      {
+    for (CalendarEvent event : events) {
+      if (event.isPrivate()) {
         calendarService_.removeUserEvent(username, event.getCalendarId(), event.getId());
-      }
-      else
-      {
+      } else {
         calendarService_.removePublicEvent(event.getCalendarId(), event.getId());
       }
     }
@@ -235,12 +237,10 @@ public class CalendarService {
    * @param username the username
    * @return the calendars map
    */
-  private Map<String, String> getCalendarsMap(String username)
-  {
+  private Map<String, String> getCalendarsMap(String username) {
     Map<String, String> map = new HashMap<String, String>();
     String[] calendarIdList = getCalendarsIdList(username);
-    for (String calId:calendarIdList)
-    {
+    for (String calId : calendarIdList) {
       Calendar calendar = null;
       try {
         calendar = calendarService_.getCalendarById(calId);
@@ -280,7 +280,6 @@ public class CalendarService {
     return list;
   }
 
-
   /**
    * Gets the events.
    *
@@ -292,7 +291,7 @@ public class CalendarService {
 
     EventQuery eventQuery = new EventQuery();
 
-    eventQuery.setOrderBy(new String[]{org.exoplatform.calendar.service.Utils.EXO_FROM_DATE_TIME});
+    eventQuery.setOrderBy(new String[] { org.exoplatform.calendar.service.Utils.EXO_FROM_DATE_TIME });
 
     eventQuery.setCalendarId(calList);
     List<CalendarEvent> userEvents = null;
@@ -321,6 +320,5 @@ public class CalendarService {
     }
     return groups;
   }
-
 
 }

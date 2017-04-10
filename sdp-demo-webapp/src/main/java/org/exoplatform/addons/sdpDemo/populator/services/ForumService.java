@@ -18,26 +18,6 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
-
-import org.exoplatform.commons.utils.ListAccess;
-import org.exoplatform.forum.common.jcr.KSDataLocation;
-import org.exoplatform.forum.common.jcr.PropertyReader;
-import org.exoplatform.forum.service.Category;
-import org.exoplatform.forum.service.Forum;
-import org.exoplatform.forum.service.MessageBuilder;
-import org.exoplatform.forum.service.Post;
-import org.exoplatform.forum.service.Topic;
-import org.exoplatform.forum.service.Utils;
-import org.exoplatform.forum.service.filter.model.ForumFilter;
-import org.exoplatform.forum.service.impl.model.PostFilter;
-import org.exoplatform.poll.service.PollService;
-import org.exoplatform.services.log.ExoLogger;
-import org.exoplatform.services.log.Log;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +25,23 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import org.exoplatform.commons.utils.ListAccess;
+import org.exoplatform.forum.common.jcr.KSDataLocation;
+import org.exoplatform.forum.common.jcr.PropertyReader;
+import org.exoplatform.forum.service.*;
+import org.exoplatform.forum.service.Utils;
+import org.exoplatform.forum.service.filter.model.ForumFilter;
+import org.exoplatform.forum.service.impl.model.PostFilter;
+import org.exoplatform.poll.service.PollService;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
+
+import juzu.SessionScoped;
 
 /**
  * The Class ForumService.
@@ -73,9 +70,7 @@ public class ForumService {
    * @param locator the locator
    */
   @Inject
-  public ForumService(org.exoplatform.forum.service.ForumService forumService,
-                      PollService pollService,
-                      KSDataLocation locator) {
+  public ForumService(org.exoplatform.forum.service.ForumService forumService, PollService pollService, KSDataLocation locator) {
     forumService_ = forumService;
     pollService_ = pollService;
     locator_ = locator;
@@ -361,47 +356,30 @@ public class ForumService {
    * @throws Exception the exception
    */
   /*
-   * public void createPollAndVote()
-   * {
-   * String forumName = "Public Discussions";
-   * try {
-   * List<Poll> polls = pollService_.getPagePoll();
-   * for (Poll poll:polls)
-   * {
-   * pollService_.removePoll(poll.getId());
-   * }
-   * Forum forum = getForumByName(forumName);
-   * Category cat = getCategoryByForumName(forumName);
-   * List<Topic> topics = forumService_.getTopics(cat.getId(), forum.getId());
-   * if (topics.size()>0) {
-   * Topic topic = topics.get(0);
-   * String[] options = {"It's amazing", "I love it", "I like it", "No opinion"};
-   * String[] votes = {"50.0", "33.333336", "16.666668", "0.0"};
-   * String[] userVotes = {org.exoplatform.addons.populator.services.Utils.JAMES+":2:0",
+   * public void createPollAndVote() { String forumName = "Public Discussions";
+   * try { List<Poll> polls = pollService_.getPagePoll(); for (Poll poll:polls)
+   * { pollService_.removePoll(poll.getId()); } Forum forum =
+   * getForumByName(forumName); Category cat =
+   * getCategoryByForumName(forumName); List<Topic> topics =
+   * forumService_.getTopics(cat.getId(), forum.getId()); if (topics.size()>0) {
+   * Topic topic = topics.get(0); String[] options = {"It's amazing",
+   * "I love it", "I like it", "No opinion"}; String[] votes = {"50.0",
+   * "33.333336", "16.666668", "0.0"}; String[] userVotes =
+   * {org.exoplatform.addons.populator.services.Utils.JAMES+":2:0",
    * org.exoplatform.addons.populator.services.Utils.JOHN+":1:0",
-   * org.exoplatform.addons.populator.services.Utils.MARY+":1:0"};
-   * Poll poll = new Poll();
-   * String pollPath = forum.getPath() + CommonUtils.SLASH + topic.getId();
-   * String pollId = topic.getId().replace(Utils.TOPIC, Utils.POLL);
-   * poll.setId(pollId);
-   * poll.setParentPath(pollPath);
-   * poll.setInTopic(true);
-   * poll.setQuestion("Do you like our new Intranet?");
+   * org.exoplatform.addons.populator.services.Utils.MARY+":1:0"}; Poll poll =
+   * new Poll(); String pollPath = forum.getPath() + CommonUtils.SLASH +
+   * topic.getId(); String pollId = topic.getId().replace(Utils.TOPIC,
+   * Utils.POLL); poll.setId(pollId); poll.setParentPath(pollPath);
+   * poll.setInTopic(true); poll.setQuestion("Do you like our new Intranet?");
    * poll.setOption(options);
    * poll.setOwner(org.exoplatform.addons.populator.services.Utils.MARY);
-   * poll.setIsMultiCheck(true);
-   * poll.setShowVote(true);
-   * poll.setIsAgainVote(true);
-   * poll.setIsClosed(false);
-   * poll.setTimeOut(0);
-   * pollService_.savePoll(poll, true, false);
-   * poll.setVote(votes);
+   * poll.setIsMultiCheck(true); poll.setShowVote(true);
+   * poll.setIsAgainVote(true); poll.setIsClosed(false); poll.setTimeOut(0);
+   * pollService_.savePoll(poll, true, false); poll.setVote(votes);
    * poll.setUserVote(userVotes);
    * poll.setModifiedBy(org.exoplatform.addons.populator.services.Utils.MARY);
-   * pollService_.savePoll(poll, true, true);
-   * }
-   * } catch (Exception e) {}
-   * }
+   * pollService_.savePoll(poll, true, true); } } catch (Exception e) {} }
    */
   private Forum getForumByName(String forumName) throws Exception {
     StringBuffer sb = new StringBuffer(Utils.JCR_ROOT);

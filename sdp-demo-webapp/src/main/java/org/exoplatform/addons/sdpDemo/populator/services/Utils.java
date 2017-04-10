@@ -18,33 +18,64 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import org.apache.commons.io.IOUtils;
-import org.exoplatform.social.core.image.ImageUtils;
-import org.exoplatform.social.core.model.AvatarAttachment;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.Calendar;
+
+import org.apache.commons.io.IOUtils;
+
+import org.exoplatform.social.core.image.ImageUtils;
+import org.exoplatform.social.core.model.AvatarAttachment;
 
 /**
  * Created by Romain Dénarié (romain.denarie@exoplatform.com) on 05/02/16.
  */
 public class Utils {
 
+  /** The content type */
+  public static String MEDIA_PATH       = "/medias";
+
+  public static String DOCUMENT_TYPE    = "documents";
+
+  public static String CONTENT_TYPE     = "contents";
+
+  public static String AVATARS_TYPE     = "images";
+
+  public static String WIKI_TYPE        = "wikis";
+
+  public static String PAGE_TYPE        = "pages";
+
+  public static String SHARED           = "Shared";
+
+  public static String SCENARIO_CONTENT = "scenario_data";
+
   /**
    * Gets the avatar attachment.
    *
    * @param fileName the file name
+   * @param scenario the scenario
    * @return the avatar attachment
    * @throws Exception the exception
    */
-  public static AvatarAttachment getAvatarAttachment(String fileName) throws Exception {
+  public static AvatarAttachment getAvatarAttachment(String fileName, String scenario) throws Exception {
     String mimeType = "image/png";
     int WIDTH = 120;
-    InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/images/" + fileName);
+    InputStream inputStream = null;
+
+    if (Utils.class.getClassLoader().getResource(MEDIA_PATH + "/" + scenario + "/" + AVATARS_TYPE + "/" + fileName) != null) {
+      inputStream = Utils.class.getClassLoader()
+                               .getResourceAsStream(MEDIA_PATH + "/" + scenario + "/" + AVATARS_TYPE + "/" + fileName);
+    } else {
+      inputStream = Utils.class.getClassLoader()
+                               .getResourceAsStream(MEDIA_PATH + "/" + SHARED + "/" + AVATARS_TYPE + "/" + fileName);
+    }
     // Resize avatar to fixed width if can't(avatarAttachment == null) keep
     // origin avatar
+
+    if (inputStream == null)
+      return null;
+
     AvatarAttachment avatarAttachment = ImageUtils.createResizedAvatarAttachment(inputStream,
                                                                                  WIDTH,
                                                                                  0,
@@ -52,6 +83,7 @@ public class Utils {
                                                                                  fileName,
                                                                                  mimeType,
                                                                                  null);
+
     if (avatarAttachment == null) {
       avatarAttachment = new AvatarAttachment(null, fileName, mimeType, inputStream, null, System.currentTimeMillis());
     }
@@ -113,11 +145,20 @@ public class Utils {
    * @return the wiki page
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static String getWikiPage(String fileName) throws IOException {
+  public static String getWikiPage(String fileName, String scenario) throws IOException {
     if (fileName.equals("")) {
       return "";
     }
-    InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/contents/" + fileName);
+
+    InputStream inputStream = null;
+
+    if (Utils.class.getClassLoader().getResource(MEDIA_PATH + "/" + scenario + "/" + WIKI_TYPE + "/" + fileName) != null) {
+      inputStream = Utils.class.getClassLoader()
+                               .getResourceAsStream(MEDIA_PATH + "/" + scenario + "/" + WIKI_TYPE + "/" + fileName);
+    } else {
+      inputStream =
+                  Utils.class.getClassLoader().getResourceAsStream(MEDIA_PATH + "/" + SHARED + "/" + WIKI_TYPE + "/" + fileName);
+    }
 
     StringWriter writer = new StringWriter();
     IOUtils.copy(inputStream, writer);
@@ -128,18 +169,29 @@ public class Utils {
   /**
    * Gets the file.
    *
-   * @param fileName the file name
-   * @param fileType the file type
+   * @param path the path to the file
    * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static InputStream getFile(String fileName, String fileType) throws IOException {
+  public static InputStream getFile(String path) throws IOException {
 
+    if (path.equals("")) {
+      return null;
+    }
+    InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream(path);
+    return inputStream;
+  }
+
+  public static String getMediaPath(String fileName, String fileType, String scenario) throws IOException {
     if (fileName.equals("")) {
       return null;
     }
-    InputStream inputStream = Utils.class.getClassLoader().getResourceAsStream("/medias/" + fileType + "/" + fileName);
-    return inputStream;
+
+    if (Utils.class.getClassLoader().getResource(MEDIA_PATH + "/" + scenario + "/" + fileType + "/" + fileName) != null) {
+      return MEDIA_PATH + "/" + scenario + "/" + fileType + "/" + fileName;
+    }
+
+    return MEDIA_PATH + "/" + SHARED + "/" + fileType + "/" + fileName;
   }
 
 }

@@ -18,15 +18,19 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
+import java.util.Arrays;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
-import org.exoplatform.services.organization.Group;
-import org.exoplatform.services.organization.MembershipType;
-import org.exoplatform.services.organization.OrganizationService;
-import org.exoplatform.services.organization.User;
-import org.exoplatform.services.organization.UserHandler;
+import org.exoplatform.services.organization.*;
 import org.exoplatform.social.core.identity.model.Identity;
 import org.exoplatform.social.core.identity.model.Profile;
 import org.exoplatform.social.core.identity.provider.OrganizationIdentityProvider;
@@ -35,15 +39,8 @@ import org.exoplatform.social.core.manager.IdentityManager;
 import org.exoplatform.social.core.manager.RelationshipManager;
 import org.exoplatform.social.core.model.AvatarAttachment;
 import org.exoplatform.webui.exception.MessageException;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.inject.Named;
+import juzu.SessionScoped;
 
 /**
  * The Class UserService.
@@ -51,6 +48,18 @@ import javax.inject.Named;
 @Named("userService")
 @SessionScoped
 public class UserService {
+
+  /** The Constant PLATFORM_USERS_GROUP. */
+  private final static String PLATFORM_USERS_GROUP    = "/platform/administrators";
+
+  /** The Constant MEMBERSHIP_TYPE_MANAGER. */
+  private final static String MEMBERSHIP_TYPE_MANAGER = "*";
+
+  /** The Constant WIDTH. */
+  private final static int    WIDTH                   = 200;
+
+  /** The log. */
+  private final Log           LOG                     = ExoLogger.getLogger(UserService.class);
 
   /** The organization service. */
   OrganizationService         organizationService_;
@@ -63,18 +72,6 @@ public class UserService {
 
   /** The relationship manager. */
   RelationshipManager         relationshipManager_;
-
-  /** The log. */
-  private final Log           LOG                     = ExoLogger.getLogger(UserService.class);
-
-  /** The Constant PLATFORM_USERS_GROUP. */
-  private final static String PLATFORM_USERS_GROUP    = "/platform/administrators";
-
-  /** The Constant MEMBERSHIP_TYPE_MANAGER. */
-  private final static String MEMBERSHIP_TYPE_MANAGER = "*";
-
-  /** The Constant WIDTH. */
-  private final static int    WIDTH                   = 200;
 
   /**
    * Instantiates a new user service.
@@ -99,7 +96,7 @@ public class UserService {
    * @param users the users
    * @param populatorService_ the populator service
    */
-  public void createUsers(JSONArray users, PopulatorService populatorService_) {
+  public void createUsers(JSONArray users, String scenario, PopulatorService populatorService_) {
 
     for (int i = 0; i < users.length(); i++) {
       try {
@@ -111,7 +108,7 @@ public class UserService {
                    user.getString("email"),
                    user.getString("password"),
                    user.getString("isadmin"));
-        saveUserAvatar(user.getString("username"), user.getString("avatar"));
+        saveUserAvatar(user.getString("username"), user.getString("avatar"), scenario);
         populatorService_.setCompletion(populatorService_.USERS, ((i + 1) * 100) / users.length());
 
       } catch (JSONException e) {
@@ -171,8 +168,8 @@ public class UserService {
       // Assign the membership "*:/platform/administrators" to the created user
       try {
         Group group = organizationService_.getGroupHandler().findGroupById(PLATFORM_USERS_GROUP);
-        MembershipType membershipType = organizationService_.getMembershipTypeHandler()
-                                                            .findMembershipType(MEMBERSHIP_TYPE_MANAGER);
+        MembershipType membershipType =
+                                      organizationService_.getMembershipTypeHandler().findMembershipType(MEMBERSHIP_TYPE_MANAGER);
         organizationService_.getMembershipHandler().linkMembership(user, group, membershipType, true);
       } catch (Exception e) {
         LOG.warn("Can not assign *:/platform/administrators membership to the created user");
@@ -204,12 +201,13 @@ public class UserService {
    * @param username the username
    * @param fileName the file name
    */
-  private void saveUserAvatar(String username, String fileName) {
+  private void saveUserAvatar(String username, String fileName, String scenario) {
     try {
 
-      AvatarAttachment avatarAttachment = Utils.getAvatarAttachment(fileName);
+      AvatarAttachment avatarAttachment = Utils.getAvatarAttachment(fileName, scenario);
       Profile p = identityManager_.getOrCreateIdentity(OrganizationIdentityProvider.NAME, username, true).getProfile();
-      p.setProperty(Profile.AVATAR, avatarAttachment);
+      if (avatarAttachment != null)
+        p.setProperty(Profile.AVATAR, avatarAttachment);
       p.setListUpdateTypes(Arrays.asList(Profile.UpdateType.AVATAR));
 
       Map<String, Object> props = p.getProperties();

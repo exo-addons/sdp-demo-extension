@@ -18,7 +18,19 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.jcr.Node;
+import javax.jcr.Session;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import org.exoplatform.services.jcr.RepositoryService;
 import org.exoplatform.services.jcr.ext.app.SessionProviderService;
@@ -32,19 +44,8 @@ import org.exoplatform.services.organization.OrganizationService;
 import org.exoplatform.services.security.ConversationState;
 import org.exoplatform.services.security.Identity;
 import org.exoplatform.services.security.MembershipEntry;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.jcr.Node;
-import javax.jcr.Session;
+import juzu.SessionScoped;
 
 /**
  * The Class DocumentService.
@@ -52,6 +53,9 @@ import javax.jcr.Session;
 @Named("documentService")
 @SessionScoped
 public class DocumentService {
+
+  /** The file created activity. */
+  public static String   FILE_CREATED_ACTIVITY = "ActivityNotify.event.FileCreated";
 
   /** The log. */
   private final Log      LOG                   = ExoLogger.getLogger(DocumentService.class);
@@ -64,9 +68,6 @@ public class DocumentService {
 
   /** The node hierarchy creator. */
   NodeHierarchyCreator   nodeHierarchyCreator_;
-
-  /** The file created activity. */
-  public static String   FILE_CREATED_ACTIVITY = "ActivityNotify.event.FileCreated";
 
   /** The listener service. */
   ListenerService        listenerService_;
@@ -97,12 +98,23 @@ public class DocumentService {
   }
 
   /**
+   * Gets the space path.
+   *
+   * @param space the space
+   * @return the space path
+   */
+  private static String getSpacePath(String space) {
+    return "Groups/spaces/" + space;
+  }
+
+  /**
    * Upload documents.
    *
    * @param documents the documents
+   * @param scenario the current scenario
    * @param populatorService_ the populator service
    */
-  public void uploadDocuments(JSONArray documents, PopulatorService populatorService_) {
+  public void uploadDocuments(JSONArray documents, String scenario, PopulatorService populatorService_) {
     for (int i = 0; i < documents.length(); i++) {
       try {
         JSONObject document = documents.getJSONObject(i);
@@ -111,9 +123,7 @@ public class DocumentService {
         String path = document.has("path") ? document.getString("path") : null;
         boolean isPrivate = document.getBoolean("isPrivate");
         String spaceName = document.has("spaceName") ? document.getString("spaceName") : "";
-        storeFile(filename, spaceName, isPrivate, null, owner, path, "collaboration", "documents");
-        // createOrEditPage(wiki, wiki.has("parent") ? wiki.getString("parent") : "");
-
+        storeFile(filename, spaceName, isPrivate, null, owner, path, "collaboration", scenario, Utils.DOCUMENT_TYPE);
         populatorService_.setCompletion(populatorService_.DOCUMENTS, ((i + 1) * 100) / documents.length());
       } catch (JSONException e) {
         LOG.error("Syntax error on document n°" + i, e);
@@ -132,7 +142,7 @@ public class DocumentService {
    * @param username the username
    * @param path the path
    * @param workspace the workspace
-   * @param fileType the file type
+   * @param scenario the current scenario
    */
   protected void storeFile(String filename,
                            String name,
@@ -141,7 +151,8 @@ public class DocumentService {
                            String username,
                            String path,
                            String workspace,
-                           String fileType) {
+                           String scenario,
+                           String type) {
     SessionProvider sessionProvider = null;
     if (!"root".equals(username)) {
       sessionProvider = startSessionAs(username);
@@ -173,7 +184,8 @@ public class DocumentService {
       if (!docNode.hasNode(filename) && (uuid == null || "---".equals(uuid))) {
         Node fileNode = docNode.addNode(filename, "nt:file");
         Node jcrContent = fileNode.addNode("jcr:content", "nt:resource");
-        InputStream inputStream = Utils.getFile(filename, fileType);
+        String sourcePath = Utils.getMediaPath(filename, type, scenario);
+        InputStream inputStream = Utils.getFile(sourcePath);
         jcrContent.setProperty("jcr:data", inputStream);
         jcrContent.setProperty("jcr:lastModified", Calendar.getInstance());
         jcrContent.setProperty("jcr:encoding", "UTF-8");
@@ -194,8 +206,7 @@ public class DocumentService {
         else if (filename.endsWith(".xlsx"))
           jcrContent.setProperty("jcr:mimeType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         else if (filename.endsWith(".pptx"))
-          jcrContent.setProperty("jcr:mimeType",
-                                 "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+          jcrContent.setProperty("jcr:mimeType", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
         else if (filename.endsWith(".odp"))
           jcrContent.setProperty("jcr:mimeType", "application/vnd.oasis.opendocument.presentation");
         else if (filename.endsWith(".odt"))
@@ -228,8 +239,7 @@ public class DocumentService {
    * @param username the username
    * @param path the path
    * @param workspace the workspace
-   * @param type the type
-   * @param fileType the file type
+   * @param scenario the file type
    */
   protected void storeVideos(String filename,
                              String name,
@@ -238,8 +248,7 @@ public class DocumentService {
                              String username,
                              String path,
                              String workspace,
-                             String type,
-                             String fileType) {
+                             String scenario) {
 
     SessionProvider sessionProvider = startSessionAs(username);
 
@@ -258,7 +267,8 @@ public class DocumentService {
       if (!docNode.hasNode(filename) && (uuid == null || "---".equals(uuid))) {
         Node fileNode = docNode.addNode(filename, "nt:file");
         Node jcrContent = fileNode.addNode("jcr:content", "nt:resource");
-        InputStream inputStream = Utils.getFile(filename, fileType);
+        String sourcePath = Utils.getMediaPath(filename, Utils.DOCUMENT_TYPE, scenario);
+        InputStream inputStream = Utils.getFile(sourcePath);
         jcrContent.setProperty("jcr:data", inputStream);
         jcrContent.setProperty("jcr:lastModified", Calendar.getInstance());
         jcrContent.setProperty("jcr:encoding", "UTF-8");
@@ -276,16 +286,6 @@ public class DocumentService {
       System.out.println("JCR::" + e.getMessage());
     }
     endSession();
-  }
-
-  /**
-   * Gets the space path.
-   *
-   * @param space the space
-   * @return the space path
-   */
-  private static String getSpacePath(String space) {
-    return "Groups/spaces/" + space;
   }
 
   /**
@@ -325,13 +325,21 @@ public class DocumentService {
   /**
    * Store script.
    *
-   * @param scriptData the script data
+   * @param scenarioData the script data
    * @return the string
    */
-  public String storeScript(String scriptData) {
-    removeFileIfExists(scriptData, "root", "/Application Data", "collaboration");
-    storeFile(scriptData, scriptData, true, null, "root", "/Application Data", "collaboration", "scriptData");
-    return ("/rest/jcr/repository/collaboration/Application Data/" + scriptData);
+  public String storeScript(String scenarioData, String scenarioName) {
+    removeFileIfExists(scenarioData, "root", "/Application Data", "collaboration");
+    storeFile(scenarioData,
+              scenarioData,
+              true,
+              null,
+              "root",
+              "/Application Data",
+              "collaboration",
+              scenarioName,
+              Utils.SCENARIO_CONTENT);
+    return ("/rest/jcr/repository/collaboration/Application Data/" + scenarioData);
 
   }
 

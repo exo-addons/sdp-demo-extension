@@ -1,7 +1,7 @@
 {
-  "scenarioName": "HR_Knowledge_Management",
-  "description": "Design expert sharing knowledge items obtained after attending an industry workshop.  Pre-retirement product manager contributes information that proves valuable to employees after her retirement. Corporate communications manager preparing for a press release finds all the information she needs prior to a meeting, gets ready and saves time going over basics during the meeting. Sales rep coming back from vacation quickly gets up to speed on all important topics and gets back to being productive.",
-  "scriptData": "HR_Knowledge_Management.zip",
+  "scenarioName": "Social_Intranet_EN",
+  "description": "Social Intranet - EN",
+  "scenarioData": "Social_Intranet_EN.zip",
   "data": {
     "users": [
       {
@@ -1634,288 +1634,288 @@
         ]
       }
     ],
-    "documents":[
+    "documents": [
       {
-        "filename":"Company Event.jpg",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"acme_communications"
+        "filename": "Company Event.jpg",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "acme_communications"
       },
       {
-        "filename":"Company Podcast.mp3",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"acme_communications"
+        "filename": "Company Podcast.mp3",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "acme_communications"
       },
       {
-        "filename":"Implementation Plan.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"delivery"
+        "filename": "Implementation Plan.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "delivery"
       },
       {
-        "filename":"Timesheet.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"delivery"
+        "filename": "Timesheet.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "delivery"
       },
       {
-        "filename":"Board Meeting Presentation.pptx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"executive_board"
+        "filename": "Board Meeting Presentation.pptx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "executive_board"
       },
       {
-        "filename":"Analysis.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"finance"
+        "filename": "Analysis.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "finance"
       },
       {
-        "filename":"Preliminary Financial Study.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"finance"
+        "filename": "Preliminary Financial Study.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "finance"
       },
       {
-        "filename":"Office Policy.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Office Policy.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Travel Expense Report.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Travel Expense Report.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Expense Report.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Expense Report.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Vacation Request Form.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Vacation Request Form.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Job Applicant Evaluation Form.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Job Applicant Evaluation Form.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Performance Review Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Performance Review Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Employee NDA Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Employee NDA Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Reference Letter for Management Personnel Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Reference Letter for Management Personnel Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Employee Status Report Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Employee Status Report Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Product Terms and Conditions.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"legal"
+        "filename": "Product Terms and Conditions.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "legal"
       },
       {
-        "filename":"Privacy Policy.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"legal"
+        "filename": "Privacy Policy.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "legal"
       },
       {
-        "filename":"Marketing Graph.png",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Marketing Graph.png",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Product Brochure.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Product Brochure.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Product Positioning.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Product Positioning.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Organic Product Catalogue.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Organic Product Catalogue.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Team Photo.jpg",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Team Photo.jpg",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Summer Discount Plan.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Summer Discount Plan.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Corporate Presentation.pptx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Corporate Presentation.pptx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Quality Guidelines.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Quality Guidelines.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Technical Specifications.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Technical Specifications.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"2015 Design Proposal.pptx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "2015 Design Proposal.pptx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Design Mockup.jpg",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Design Mockup.jpg",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Organic Product Catalogue.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Organic Product Catalogue.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Product Roadmap.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Product Roadmap.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Sales Graph.jpg",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Sales Graph.jpg",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Purchase Order Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Purchase Order Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Reseller Contract.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Reseller Contract.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Partnership Program.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Partnership Program.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Positioning.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Positioning.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Corporate Presentation.pptx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Corporate Presentation.pptx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Proposal Template.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Proposal Template.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Price List.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Price List.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Organic Color Chart Ideas.pptx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"design"
+        "filename": "Organic Color Chart Ideas.pptx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "design"
       },
       {
-        "filename":"Brand Guidelines.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"design"
+        "filename": "Brand Guidelines.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "design"
       },
       {
-        "filename":"20160315 PR Report.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "20160315 PR Report.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"New Product Brochure.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "New Product Brochure.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"Press Release Notes.docx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "Press Release Notes.docx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"Travel Expense Report.xlsx",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Travel Expense Report.xlsx",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "logistics"
       },
       {
-        "filename":"Business Trip Checklist.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Business Trip Checklist.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "logistics"
       },
       {
-        "filename":"Delivery Guidelines.pdf",
-        "owner":"root",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Delivery Guidelines.pdf",
+        "owner": "root",
+        "isPrivate": false,
+        "spaceName": "logistics"
       }
     ]
   }

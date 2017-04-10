@@ -18,7 +18,15 @@
  */
 package org.exoplatform.addons.sdpDemo.populator.services;
 
-import juzu.SessionScoped;
+import java.io.IOException;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xwiki.rendering.syntax.Syntax;
 
 import org.exoplatform.portal.config.model.PortalConfig;
 import org.exoplatform.services.log.ExoLogger;
@@ -27,15 +35,8 @@ import org.exoplatform.wiki.WikiException;
 import org.exoplatform.wiki.mow.api.Page;
 import org.exoplatform.wiki.mow.api.Wiki;
 import org.exoplatform.wiki.resolver.TitleResolver;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xwiki.rendering.syntax.Syntax;
 
-import java.io.IOException;
-
-import javax.inject.Inject;
-import javax.inject.Named;
+import juzu.SessionScoped;
 
 /**
  * The Class WikiService.
@@ -44,11 +45,11 @@ import javax.inject.Named;
 @SessionScoped
 public class WikiService {
 
-  /** The wiki service. */
-  org.exoplatform.wiki.service.WikiService wikiService_;
-
   /** The log. */
   private final Log                        LOG = ExoLogger.getLogger(WikiService.class);
+
+  /** The wiki service. */
+  org.exoplatform.wiki.service.WikiService wikiService_;
 
   /**
    * Instantiates a new wiki service.
@@ -64,13 +65,14 @@ public class WikiService {
    * Creates the user wiki.
    *
    * @param wikis the wikis
+   * @param scenario the current scenario
    * @param populatorService_ the populator service
    */
-  public void createUserWiki(JSONArray wikis, PopulatorService populatorService_) {
+  public void createUserWiki(JSONArray wikis, String scenario, PopulatorService populatorService_) {
     for (int i = 0; i < wikis.length(); i++) {
       try {
         JSONObject wiki = wikis.getJSONObject(i);
-        createOrEditPage(wiki, wiki.has("parent") ? wiki.getString("parent") : "");
+        createOrEditPage(wiki, wiki.has("parent") ? wiki.getString("parent") : "", scenario);
         populatorService_.setCompletion(populatorService_.WIKI, ((i + 1) * 100) / wikis.length());
       } catch (JSONException e) {
         LOG.error("Syntax error on wiki n°" + i, e);
@@ -84,9 +86,10 @@ public class WikiService {
    *
    * @param wiki the wiki
    * @param parentTitle the parent title
+   * @param scenario the current scenario
    * @throws JSONException the JSON exception
    */
-  private void createOrEditPage(JSONObject wiki, String parentTitle) throws JSONException {
+  private void createOrEditPage(JSONObject wiki, String parentTitle, String scenario) throws JSONException {
     boolean forceNew = wiki.has("new") && wiki.getBoolean("new");
     String title = wiki.getString("title");
     String filename = wiki.has("filename") ? wiki.getString("filename") : "";
@@ -122,7 +125,7 @@ public class WikiService {
 
       String content = "= " + title + " =";
       if (filename != null && !filename.equals(""))
-        content = Utils.getWikiPage(filename);
+        content = Utils.getWikiPage(filename, scenario);
       page.setContent(content);
       page.setSyntax(Syntax.XWIKI_2_1.toIdString());
       wikiService_.updatePage(page, null);
@@ -131,12 +134,14 @@ public class WikiService {
       if (wiki.has("wikis") && wiki.getJSONArray("wikis").length() > 0) {
         for (int j = 0; j < wiki.getJSONArray("wikis").length(); j++) {
           JSONObject childWiki = wiki.getJSONArray("wikis").getJSONObject(j);
-          createOrEditPage(childWiki, wiki.getString("title"));
+          createOrEditPage(childWiki, wiki.getString("title"), scenario);
         }
       }
 
     } catch (WikiException e) {
-      LOG.error("Error when creating wiki page", e); // To change body of catch statement use File | Settings
+      LOG.error("Error when creating wiki page", e); // To change body of catch
+                                                     // statement use File |
+                                                     // Settings
                                                      // | File Templates.
     } catch (IOException e) {
       LOG.error("Error when reading wiki content", e);
