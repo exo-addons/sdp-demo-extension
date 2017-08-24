@@ -1637,283 +1637,283 @@
     "documents":[
       {
         "filename":"Company Event.jpg",
-        "owner":"root",
+        "owner":"robert",
         "isPrivate":false,
         "spaceName":"acme_communications"
       },
       {
         "filename":"Company Podcast.mp3",
-        "owner":"root",
+        "owner":"amanda",
         "isPrivate":false,
         "spaceName":"acme_communications"
       },
       {
         "filename":"Implementation Plan.docx",
-        "owner":"root",
+        "owner":"andrew",
         "isPrivate":false,
         "spaceName":"delivery"
       },
       {
         "filename":"Timesheet.xlsx",
-        "owner":"root",
+        "owner":"miguel",
         "isPrivate":false,
         "spaceName":"delivery"
       },
       {
         "filename":"Board Meeting Presentation.pptx",
-        "owner":"root",
+        "owner":"john",
         "isPrivate":false,
         "spaceName":"executive_board"
       },
       {
         "filename":"Analysis.xlsx",
-        "owner":"root",
+        "owner":"philip",
         "isPrivate":false,
         "spaceName":"finance"
       },
       {
         "filename":"Preliminary Financial Study.docx",
-        "owner":"root",
+        "owner":"michael",
         "isPrivate":false,
         "spaceName":"finance"
       },
       {
         "filename":"Office Policy.pdf",
-        "owner":"root",
+        "owner":"elizabeth",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Travel Expense Report.xlsx",
-        "owner":"root",
+        "owner":"tim",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Expense Report.xlsx",
-        "owner":"root",
+        "owner":"tracy",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Vacation Request Form.pdf",
-        "owner":"root",
+        "owner":"amber",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Job Applicant Evaluation Form.pdf",
-        "owner":"root",
+        "owner":"scott",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Performance Review Template.docx",
-        "owner":"root",
+        "owner":"scott",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Employee NDA Template.docx",
-        "owner":"root",
+        "owner":"sam",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Reference Letter for Management Personnel Template.docx",
-        "owner":"root",
+        "owner":"scott",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Employee Status Report Template.docx",
-        "owner":"root",
+        "owner":"amber",
         "isPrivate":false,
         "spaceName":"human_resources"
       },
       {
         "filename":"Product Terms and Conditions.pdf",
-        "owner":"root",
+        "owner":"mary",
         "isPrivate":false,
         "spaceName":"legal"
       },
       {
         "filename":"Privacy Policy.pdf",
-        "owner":"root",
+        "owner":"mary",
         "isPrivate":false,
         "spaceName":"legal"
       },
       {
         "filename":"Marketing Graph.png",
-        "owner":"root",
+        "owner":"sandy",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Product Brochure.pdf",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Product Positioning.docx",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Organic Product Catalogue.pdf",
-        "owner":"root",
+        "owner":"sandy",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Team Photo.jpg",
-        "owner":"root",
+        "owner":"jack",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Summer Discount Plan.xlsx",
-        "owner":"root",
+        "owner":"jim",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Corporate Presentation.pptx",
-        "owner":"root",
+        "owner":"jack",
         "isPrivate":false,
         "spaceName":"marketing"
       },
       {
         "filename":"Quality Guidelines.pdf",
-        "owner":"root",
+        "owner":"kate",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"Technical Specifications.docx",
-        "owner":"root",
+        "owner":"kate",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"2015 Design Proposal.pptx",
-        "owner":"root",
+        "owner":"michael",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"Design Mockup.jpg",
-        "owner":"root",
+        "owner":"james",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"Organic Product Catalogue.pdf",
-        "owner":"root",
+        "owner":"andrew",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"Product Roadmap.xlsx",
-        "owner":"root",
+        "owner":"james",
         "isPrivate":false,
         "spaceName":"products"
       },
       {
         "filename":"Sales Graph.jpg",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Purchase Order Template.docx",
-        "owner":"root",
+        "owner":"john",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Reseller Contract.docx",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Partnership Program.pdf",
-        "owner":"root",
+        "owner":"john",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Positioning.pdf",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Corporate Presentation.pptx",
-        "owner":"root",
+        "owner":"tracy",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Proposal Template.docx",
-        "owner":"root",
+        "owner":"tracy",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Price List.xlsx",
-        "owner":"root",
+        "owner":"john",
         "isPrivate":false,
         "spaceName":"sales"
       },
       {
         "filename":"Organic Color Chart Ideas.pptx",
-        "owner":"root",
+        "owner":"ronald",
         "isPrivate":false,
         "spaceName":"design"
       },
       {
         "filename":"Brand Guidelines.pdf",
-        "owner":"root",
+        "owner":"ronald",
         "isPrivate":false,
         "spaceName":"design"
       },
       {
         "filename":"20160315 PR Report.pdf",
-        "owner":"root",
+        "owner":"adam",
         "isPrivate":false,
         "spaceName":"product_launch_project"
       },
       {
         "filename":"New Product Brochure.pdf",
-        "owner":"root",
+        "owner":"henry",
         "isPrivate":false,
         "spaceName":"product_launch_project"
       },
       {
         "filename":"Press Release Notes.docx",
-        "owner":"root",
+        "owner":"adam",
         "isPrivate":false,
         "spaceName":"product_launch_project"
       },
       {
         "filename":"Travel Expense Report.xlsx",
-        "owner":"root",
+        "owner":"amber",
         "isPrivate":false,
         "spaceName":"logistics"
       },
       {
         "filename":"Business Trip Checklist.pdf",
-        "owner":"root",
+        "owner":"evan",
         "isPrivate":false,
         "spaceName":"logistics"
       },
       {
         "filename":"Delivery Guidelines.pdf",
-        "owner":"root",
+        "owner":"mary",
         "isPrivate":false,
         "spaceName":"logistics"
       }

@@ -205,6 +205,9 @@ public class DocumentService {
         else if (filename.endsWith(".zip")) {
           jcrContent.setProperty("jcr:mimeType", "application/zip");
         }
+        else if (filename.endsWith(".mp3")) {
+          jcrContent.setProperty("jcr:mimeType", "audio/mpeg");
+        }
         session.save();
         if (!"root".equals(username)) {
           listenerService_.broadcast(FILE_CREATED_ACTIVITY, null, fileNode);
