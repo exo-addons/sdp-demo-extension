@@ -20,11 +20,10 @@ package org.exoplatform.addons.sdpDemo.populator.services;
 
 import juzu.SessionScoped;
 
-import org.exoplatform.calendar.service.Calendar;
-import org.exoplatform.calendar.service.CalendarEvent;
-import org.exoplatform.calendar.service.CalendarSetting;
-import org.exoplatform.calendar.service.EventQuery;
-import org.exoplatform.calendar.service.GroupCalendarData;
+import org.exoplatform.calendar.model.Calendar;
+import org.exoplatform.calendar.model.Event;
+import org.exoplatform.calendar.service.*;
+import org.exoplatform.commons.utils.CommonsUtils;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.services.organization.Group;
@@ -49,6 +48,9 @@ public class CalendarService {
 
   /** The calendar service. */
   org.exoplatform.calendar.service.CalendarService calendarService_;
+
+  /** The Calendar Handler*/
+  org.exoplatform.calendar.service.ExtendedCalendarService calendarHandler_;
   
   /** The organization service. */
   OrganizationService organizationService_;
@@ -63,8 +65,9 @@ public class CalendarService {
    * @param organizationService the organization service
    */
   @Inject
-  public CalendarService(org.exoplatform.calendar.service.CalendarService calendarService, OrganizationService organizationService)
+  public CalendarService(OrganizationService organizationService, org.exoplatform.calendar.service.CalendarService calendarService)
   {
+    calendarHandler_ = CommonsUtils.getService(ExtendedCalendarService.class);
     calendarService_ = calendarService;
     organizationService_ = organizationService;
   }
@@ -92,15 +95,17 @@ public class CalendarService {
         try {
           String[] calendarIdList = getCalendarsIdList(username);
           for (String calId : calendarIdList) {
-            Calendar calendar = calendarService_.getCalendarById(calId);
+            Calendar calendar = calendarHandler_.getCalendarHandler().getCalendarById(calId);
             String calName = calendar.getName();
             if (map.containsKey(calName)) {
               JSONObject calTemp = map.get(calName);
               calendar.setCalendarColor(calTemp.getString("color"));
+              calendar.setCalendarOwner(username);
               if (calTemp.has("type") && calTemp.getString("type").equals("user")) {
-                calendarService_.saveUserCalendar(username, calendar, true);
+                calendarHandler_.getCalendarHandler().saveCalendar(calendar);
               } else
-                calendarService_.savePublicCalendar(calendar, false);
+                //calendarService_.savePublicCalendar(calendar, false);
+                calendarHandler_.getCalendarHandler().saveCalendar(calendar);
             } else {
               filtered = calendar.getId();
             }
@@ -189,8 +194,8 @@ public class CalendarService {
     CalendarEvent event = new CalendarEvent();
     event.setCalendarId(calId);
     event.setSummary(summary);
-    event.setEventType(CalendarEvent.TYPE_EVENT);
-    event.setRepeatType(CalendarEvent.RP_NOREPEAT);
+    event.setEventType(Event.TYPE_EVENT);
+    event.setRepeatType(Event.RP_NOREPEAT);
     event.setPrivate(isUserEvent);
       java.util.Calendar calendar =java.util.Calendar.getInstance();
     calendar.setTimeInMillis(calendar.getTime().getTime());

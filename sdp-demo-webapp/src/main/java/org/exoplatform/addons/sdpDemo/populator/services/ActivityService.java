@@ -24,14 +24,18 @@ import javax.inject.Named;
 
 import juzu.SessionScoped;
 
+import org.exoplatform.commons.utils.CommonsUtils;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.social.core.activity.model.ExoSocialActivity;
 import org.exoplatform.social.core.activity.model.ExoSocialActivityImpl;
+import org.exoplatform.social.core.application.SpaceActivityPublisher;
 import org.exoplatform.social.core.identity.model.Identity;
 import org.exoplatform.social.core.identity.provider.OrganizationIdentityProvider;
+import org.exoplatform.social.core.identity.provider.SpaceIdentityProvider;
 import org.exoplatform.social.core.manager.ActivityManager;
 import org.exoplatform.social.core.manager.IdentityManager;
+import org.exoplatform.social.core.space.model.Space;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,17 +57,21 @@ public class ActivityService {
   /** The identity manager. */
   IdentityManager identityManager_;
 
+  /** The space Service manager. */
+  org.exoplatform.social.core.space.spi.SpaceService spaceService_;
+
   /**
    * Instantiates a new activity service.
-   *
+   * @param  spaceService the space service
    * @param activityManager the activity manager
    * @param identityManager the identity manager
    */
   @Inject
-  public ActivityService(ActivityManager activityManager, IdentityManager identityManager)
+  public ActivityService(ActivityManager activityManager, IdentityManager identityManager, org.exoplatform.social.core.space.spi.SpaceService spaceService)
   {
     activityManager_ = activityManager;
     identityManager_ = identityManager;
+    spaceService_= spaceService;
   }
 
   /**
@@ -107,10 +115,14 @@ public class ActivityService {
     activity.setBody(activityJSON.getString("body"));
     activity.setTitle(activityJSON.getString("body"));
     activity.setUserId(identity.getId());
+    //--- Activity Context could be empty when we publish on user's Stream or space prettyName in case of space Stream
+    String activityContext = activityJSON.has("context") ? activityJSON.getString("context") : "";
+    Identity spaceIdentity = CommonsUtils.getService(IdentityManager.class).getOrCreateIdentity(SpaceIdentityProvider.NAME,activityContext,false);
     activity.setType("DEFAULT_ACTIVITY");
+
     // TODO cleanup
     //activity = activityManager_.saveActivity(identity, activity);
-    activityManager_.saveActivityNoReturn(identity, activity);
+    activityManager_.saveActivityNoReturn(spaceIdentity, activity);
 
     Thread.sleep(1000);
     JSONArray likes = activityJSON.getJSONArray("likes");

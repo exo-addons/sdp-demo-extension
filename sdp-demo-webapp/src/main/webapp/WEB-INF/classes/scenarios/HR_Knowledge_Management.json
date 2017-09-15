@@ -1634,289 +1634,534 @@
         ]
       }
     ],
-    "documents":[
+    "documents": [
       {
-        "filename":"Company Event.jpg",
-        "owner":"robert",
-        "isPrivate":false,
-        "spaceName":"acme_communications"
+        "filename": "Company Event.jpg",
+        "owner": "robert",
+        "isPrivate": false,
+        "spaceName": "acme_communications"
       },
       {
-        "filename":"Company Podcast.mp3",
-        "owner":"amanda",
-        "isPrivate":false,
-        "spaceName":"acme_communications"
+        "filename": "Company Podcast.mp3",
+        "owner": "amanda",
+        "isPrivate": false,
+        "spaceName": "acme_communications"
       },
       {
-        "filename":"Implementation Plan.docx",
-        "owner":"andrew",
-        "isPrivate":false,
-        "spaceName":"delivery"
+        "filename": "Implementation Plan.docx",
+        "owner": "andrew",
+        "isPrivate": false,
+        "spaceName": "delivery"
       },
       {
-        "filename":"Timesheet.xlsx",
-        "owner":"miguel",
-        "isPrivate":false,
-        "spaceName":"delivery"
+        "filename": "Timesheet.xlsx",
+        "owner": "miguel",
+        "isPrivate": false,
+        "spaceName": "delivery"
       },
       {
-        "filename":"Board Meeting Presentation.pptx",
-        "owner":"john",
-        "isPrivate":false,
-        "spaceName":"executive_board"
+        "filename": "Board Meeting Presentation.pptx",
+        "owner": "john",
+        "isPrivate": false,
+        "spaceName": "executive_board"
       },
       {
-        "filename":"Analysis.xlsx",
-        "owner":"philip",
-        "isPrivate":false,
-        "spaceName":"finance"
+        "filename": "Analysis.xlsx",
+        "owner": "philip",
+        "isPrivate": false,
+        "spaceName": "finance"
       },
       {
-        "filename":"Preliminary Financial Study.docx",
-        "owner":"michael",
-        "isPrivate":false,
-        "spaceName":"finance"
+        "filename": "Preliminary Financial Study.docx",
+        "owner": "michael",
+        "isPrivate": false,
+        "spaceName": "finance"
       },
       {
-        "filename":"Office Policy.pdf",
-        "owner":"elizabeth",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Office Policy.pdf",
+        "owner": "elizabeth",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Travel Expense Report.xlsx",
-        "owner":"tim",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Travel Expense Report.xlsx",
+        "owner": "tim",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Expense Report.xlsx",
-        "owner":"tracy",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Expense Report.xlsx",
+        "owner": "tracy",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Vacation Request Form.pdf",
-        "owner":"amber",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Vacation Request Form.pdf",
+        "owner": "amber",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Job Applicant Evaluation Form.pdf",
-        "owner":"scott",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Job Applicant Evaluation Form.pdf",
+        "owner": "scott",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Performance Review Template.docx",
-        "owner":"scott",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Performance Review Template.docx",
+        "owner": "scott",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Employee NDA Template.docx",
-        "owner":"sam",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Employee NDA Template.docx",
+        "owner": "sam",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Reference Letter for Management Personnel Template.docx",
-        "owner":"scott",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Reference Letter for Management Personnel Template.docx",
+        "owner": "scott",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Employee Status Report Template.docx",
-        "owner":"amber",
-        "isPrivate":false,
-        "spaceName":"human_resources"
+        "filename": "Employee Status Report Template.docx",
+        "owner": "amber",
+        "isPrivate": false,
+        "spaceName": "human_resources"
       },
       {
-        "filename":"Product Terms and Conditions.pdf",
-        "owner":"mary",
-        "isPrivate":false,
-        "spaceName":"legal"
+        "filename": "Product Terms and Conditions.pdf",
+        "owner": "mary",
+        "isPrivate": false,
+        "spaceName": "legal"
       },
       {
-        "filename":"Privacy Policy.pdf",
-        "owner":"mary",
-        "isPrivate":false,
-        "spaceName":"legal"
+        "filename": "Privacy Policy.pdf",
+        "owner": "mary",
+        "isPrivate": false,
+        "spaceName": "legal"
       },
       {
-        "filename":"Marketing Graph.png",
-        "owner":"sandy",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Marketing Graph.png",
+        "owner": "sandy",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Product Brochure.pdf",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Product Brochure.pdf",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Product Positioning.docx",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Product Positioning.docx",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Organic Product Catalogue.pdf",
-        "owner":"sandy",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Organic Product Catalogue.pdf",
+        "owner": "sandy",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Team Photo.jpg",
-        "owner":"jack",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Team Photo.jpg",
+        "owner": "jack",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Summer Discount Plan.xlsx",
-        "owner":"jim",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Summer Discount Plan.xlsx",
+        "owner": "jim",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Corporate Presentation.pptx",
-        "owner":"jack",
-        "isPrivate":false,
-        "spaceName":"marketing"
+        "filename": "Corporate Presentation.pptx",
+        "owner": "jack",
+        "isPrivate": false,
+        "spaceName": "marketing"
       },
       {
-        "filename":"Quality Guidelines.pdf",
-        "owner":"kate",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Quality Guidelines.pdf",
+        "owner": "kate",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Technical Specifications.docx",
-        "owner":"kate",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Technical Specifications.docx",
+        "owner": "kate",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"2015 Design Proposal.pptx",
-        "owner":"michael",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "2015 Design Proposal.pptx",
+        "owner": "michael",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Design Mockup.jpg",
-        "owner":"james",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Design Mockup.jpg",
+        "owner": "james",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Organic Product Catalogue.pdf",
-        "owner":"andrew",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Organic Product Catalogue.pdf",
+        "owner": "andrew",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Product Roadmap.xlsx",
-        "owner":"james",
-        "isPrivate":false,
-        "spaceName":"products"
+        "filename": "Product Roadmap.xlsx",
+        "owner": "james",
+        "isPrivate": false,
+        "spaceName": "products"
       },
       {
-        "filename":"Sales Graph.jpg",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Sales Graph.jpg",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Purchase Order Template.docx",
-        "owner":"john",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Purchase Order Template.docx",
+        "owner": "john",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Reseller Contract.docx",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Reseller Contract.docx",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Partnership Program.pdf",
-        "owner":"john",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Partnership Program.pdf",
+        "owner": "john",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Positioning.pdf",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Positioning.pdf",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Corporate Presentation.pptx",
-        "owner":"tracy",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Corporate Presentation.pptx",
+        "owner": "tracy",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Proposal Template.docx",
-        "owner":"tracy",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Proposal Template.docx",
+        "owner": "tracy",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Price List.xlsx",
-        "owner":"john",
-        "isPrivate":false,
-        "spaceName":"sales"
+        "filename": "Price List.xlsx",
+        "owner": "john",
+        "isPrivate": false,
+        "spaceName": "sales"
       },
       {
-        "filename":"Organic Color Chart Ideas.pptx",
-        "owner":"ronald",
-        "isPrivate":false,
-        "spaceName":"design"
+        "filename": "Organic Color Chart Ideas.pptx",
+        "owner": "ronald",
+        "isPrivate": false,
+        "spaceName": "design"
       },
       {
-        "filename":"Brand Guidelines.pdf",
-        "owner":"ronald",
-        "isPrivate":false,
-        "spaceName":"design"
+        "filename": "Brand Guidelines.pdf",
+        "owner": "ronald",
+        "isPrivate": false,
+        "spaceName": "design"
       },
       {
-        "filename":"20160315 PR Report.pdf",
-        "owner":"adam",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "20160315 PR Report.pdf",
+        "owner": "adam",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"New Product Brochure.pdf",
-        "owner":"henry",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "New Product Brochure.pdf",
+        "owner": "henry",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"Press Release Notes.docx",
-        "owner":"adam",
-        "isPrivate":false,
-        "spaceName":"product_launch_project"
+        "filename": "Press Release Notes.docx",
+        "owner": "adam",
+        "isPrivate": false,
+        "spaceName": "product_launch_project"
       },
       {
-        "filename":"Travel Expense Report.xlsx",
-        "owner":"amber",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Travel Expense Report.xlsx",
+        "owner": "amber",
+        "isPrivate": false,
+        "spaceName": "logistics"
       },
       {
-        "filename":"Business Trip Checklist.pdf",
-        "owner":"evan",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Business Trip Checklist.pdf",
+        "owner": "evan",
+        "isPrivate": false,
+        "spaceName": "logistics"
       },
       {
-        "filename":"Delivery Guidelines.pdf",
-        "owner":"mary",
-        "isPrivate":false,
-        "spaceName":"logistics"
+        "filename": "Delivery Guidelines.pdf",
+        "owner": "mary",
+        "isPrivate": false,
+        "spaceName": "logistics"
+      }
+    ],
+    "calendars": [
+      {
+        "user": "john",
+        "calendars": [
+          {
+            "name": "John Harold",
+            "color": "powder_blue",
+            "type": "user",
+            "events": [
+              {
+                "title": "Spec Review",
+                "day": "monday",
+                "start": "17:00",
+                "end": "19:00"
+              },
+              {
+                "title": "Team Work",
+                "day": "tuesday",
+                "start": "14:00",
+                "end": "18:00"
+              },
+              {
+                "title": "EOW Team Meeting",
+                "day": "friday",
+                "start": "13:00",
+                "end": "15:00"
+              }
+            ]
+          },
+          {
+            "name": "ACME Communications",
+            "color": "orange",
+            "events": [
+              {
+                "title": "Intranet Migration Process",
+                "day": "wednesday",
+                "start": "10:00",
+                "end": "14:00"
+              },
+              {
+                "title": "Company Dinner",
+                "day": "thursday",
+                "start": "17:30",
+                "end": "20:00"
+              }
+            ]
+          },
+          {
+            "name": "Sales",
+            "color": "moss_green",
+            "events": [
+              {
+                "title": "Pipe Review",
+                "day": "monday",
+                "start": "10:00",
+                "end": "11:30"
+              },
+              {
+                "title": "Product Team Demo",
+                "day": "wednesday",
+                "start": "15:00",
+                "end": "16:00"
+              },
+              {
+                "title": "Sales Webinar",
+                "day": "thursday",
+                "start": "11:00",
+                "end": "12:00"
+              }
+            ]
+          },
+          {
+            "name": "Internal Job Postings",
+            "color": "light_purple",
+            "events": [
+              {
+                "title": "Intranet Demo",
+                "day": "thursday",
+                "start": "13:00",
+                "end": "17:00"
+              },
+              {
+                "title": "VP Board Q&R",
+                "day": "friday",
+                "start": "16:00",
+                "end": "17:00"
+              }
+            ]
+          },
+          {
+            "name": "Human Resources",
+            "color": "gray",
+            "events": [
+              {
+                "title": "Weekly HR Meeting",
+                "day": "friday",
+                "start": "10:00",
+                "end": "11:30"
+              }
+            ]
+          },
+          {
+            "name": "Marketing",
+            "color": "pink",
+            "events": [
+              {
+                "title": "Lead Gen Study",
+                "day": "tuesday",
+                "start": "9:30",
+                "end": "12:30"
+              },
+              {
+                "title": "Analytics Update",
+                "day": "wednesday",
+                "start": "17:00",
+                "end": "19:00"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "wikis": [
+      {
+        "title": "WikiHome",
+        "type": "portal",
+        "owner": "intranet",
+        "filename": "wiki-home.txt"
+      },
+      {
+        "title": "Activity Stream Engagement",
+        "filename": "activity-stream-engagement.txt",
+        "parent": "WikiHome",
+        "new": true
+      },
+      {
+        "title": "How-To Guide",
+        "filename": "how-to-guide.txt",
+        "parent": "WikiHome",
+        "new": true
+      },
+      {
+        "title": "Leave Planning",
+        "filename": "leave-planning.txt",
+        "parent": "WikiHome",
+        "new": true
+      },
+      {
+        "title": "Meeting Notes",
+        "parent": "WikiHome",
+        "wikis": [
+          {
+            "title": "0107 Company Meeting"
+          },
+          {
+            "title": "0114 Company Meeting",
+            "wikis": [
+              {
+                "title": "Attachments"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "General Knowledge",
+        "parent": "WikiHome",
+        "wikis": [
+          {
+            "title": "New in the Company"
+          },
+          {
+            "title": "Intranet Team Organization"
+          }
+        ]
+      },
+      {
+        "title": "Sofware Vendors",
+        "type": "group",
+        "owner": "/spaces/product_launch_project",
+        "parent": "WikiHome"
+      },
+      {
+        "title": "Employee Onboarding",
+        "type": "group",
+        "owner": "/spaces/product_launch_project",
+        "parent": "WikiHome"
+      },
+      {
+        "title": "Web Design Proposals",
+        "type": "group",
+        "owner": "/spaces/product_launch_project",
+        "parent": "WikiHome"
+      }
+    ],
+    "activities": [
+      {
+        "from": "john",
+        "body": "I'm with @carrie at Paris",
+        "context": "acme_communications",
+        "target":"",
+        "likes": [
+          "emily",
+          "james"
+        ],
+        "comments": [
+          {
+            "from": "elizabeth",
+            "body": "Nice coffee at Paris"
+          }
+        ]
+      },
+      {
+        "from": "evan",
+        "body": "Don't forget our Public Webinar next week",
+        "context": "sales",
+        "likes": [
+          "sam",
+          "john",
+          "andrew",
+          "robert"
+        ],
+        "comments": [
+          {
+            "from": "sam",
+            "body": "in the main room?"
+          },
+          {
+            "from": "john",
+            "body": "yes and it will be also shared online"
+          },
+          {
+            "from": "andrew",
+            "body": "btw @john , remind me to send a formal invitation"
+          },
+          {
+            "from": "john",
+            "body": "of course @andrew"
+          }
+        ]
       }
     ]
-  }
+
+    }
+
 }

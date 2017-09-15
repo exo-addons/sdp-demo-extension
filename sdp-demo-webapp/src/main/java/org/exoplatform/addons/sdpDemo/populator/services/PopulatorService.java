@@ -183,7 +183,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
-        wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), this);
+       wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), this);
       }
       if (scenarioData.has("activities")) {
 

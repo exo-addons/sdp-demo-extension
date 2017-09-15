@@ -27,6 +27,7 @@ import org.exoplatform.wiki.WikiException;
 import org.exoplatform.wiki.mow.api.Page;
 import org.exoplatform.wiki.mow.api.Wiki;
 import org.exoplatform.wiki.resolver.TitleResolver;
+import org.exoplatform.wiki.utils.WikiConstants;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,7 +108,7 @@ public class WikiService {
         wikiService_.createWiki(type, owner);
       }
 
-      if (forceNew && !title.equals("WikiHome")) {
+      if (forceNew && !title.equals(WikiConstants.WIKI_HOME_NAME)) {
         if (wikiService_.isExisting(type, owner, TitleResolver.getId(title, false))) {
           wikiService_.deletePage(type, owner, TitleResolver.getId(title, false));
         }
