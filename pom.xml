@@ -21,7 +21,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <exoplatform.version>5.0.x-SNAPSHOT</exoplatform.version>
+    <org.exoplatform.platform.version>5.0.x-SNAPSHOT</org.exoplatform.platform.version>
     <juzu.version>1.2.0-M02</juzu.version>
   </properties>
   <dependencyManagement>
@@ -36,7 +36,7 @@
       <dependency>
         <groupId>org.exoplatform.platform</groupId>
         <artifactId>platform</artifactId>
-        <version>${exoplatform.version}</version>
+        <version>${org.exoplatform.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
