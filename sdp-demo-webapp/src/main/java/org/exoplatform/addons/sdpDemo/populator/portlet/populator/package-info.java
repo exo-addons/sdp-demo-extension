@@ -18,20 +18,15 @@
 )
 @Bindings(
         {
-                @Binding(value = org.exoplatform.services.organization.OrganizationService.class),
-                @Binding(value = org.exoplatform.social.core.space.spi.SpaceService.class),
-                @Binding(value = org.exoplatform.social.core.manager.IdentityManager.class),
-                @Binding(value = org.exoplatform.social.core.manager.RelationshipManager.class),
-                @Binding(value = org.exoplatform.calendar.service.CalendarService.class),
-                @Binding(value = org.exoplatform.wiki.service.WikiService.class),
-                @Binding(value = org.exoplatform.social.core.manager.ActivityManager.class),
-                @Binding(value = org.exoplatform.services.jcr.RepositoryService.class),
-                @Binding(value = org.exoplatform.services.jcr.ext.app.SessionProviderService.class),
-                @Binding(value = org.exoplatform.services.jcr.ext.hierarchy.NodeHierarchyCreator.class),
-                @Binding(value = org.exoplatform.services.listener.ListenerService.class),
-                @Binding(value = org.exoplatform.forum.service.ForumService.class),
-                @Binding(value = org.exoplatform.poll.service.PollService.class),
-                @Binding(value = org.exoplatform.forum.common.jcr.KSDataLocation.class)
+
+                @Binding(value = org.exoplatform.injection.core.module.ActivityModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.CalendarModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.DocumentModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.ForumModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.SpaceModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.UserModule.class),
+                @Binding(value = org.exoplatform.injection.core.module.WikiModule.class),
+                @Binding(value = org.exoplatform.injection.services.DataInjector.class)
         }
 )
 

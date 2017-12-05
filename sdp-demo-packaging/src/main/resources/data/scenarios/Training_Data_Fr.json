@@ -1,0 +1,69 @@
+{
+  "scenarioName": "Training_Data_Fr",
+  "description": "Données nécessaire à la réalisation du Training Administrateur fonctionnel",
+  "scriptData": "Training_Data_Fr.zip",
+  "data": {
+    "users":[
+      {
+        "username": "cbouvier",
+        "firstname": "Christian",
+        "lastname": "Bouvier",
+        "password": "gtngtn",
+        "email": "cbouvier@acme.com",
+        "position": "Community Manager",
+        "isadmin": "false",
+        "avatar": "Andrew_Potter.png"
+      },
+      {
+        "username": "grenaud",
+        "firstname": "Guillaume",
+        "lastname": "Renaud",
+        "password": "gtngtn",
+        "email": "grenaud@acme.com",
+        "position": "Consultant Produit Senior",
+        "isadmin": "false",
+        "avatar": "Henry_Smith.png"
+      },
+      {
+        "username": "smailly",
+        "firstname": "Serge",
+        "lastname": "Mailly",
+        "password": "gtngtn",
+        "email": "smailly@acme.com",
+        "position": "Consultant Technique Produit",
+        "isadmin": "false",
+        "avatar": "Gene_Wolfe.png"
+      },
+      {
+        "username": "nbellemare",
+        "firstname": "Nathalie",
+        "lastname": "Bellemare",
+        "password": "gtngtn",
+        "email": "nbellemare@acme.com",
+        "position": "Marketing Manager",
+        "isadmin": "false",
+        "avatar": "Amanda_Jefferson.png"
+      }
+    ],
+    "relations": [
+      {
+        "inviting": "cbouvier",
+        "invited": "smailly",
+        "confirmed": true
+      }
+    ],
+    "spaces": [
+      {
+        "displayName": "Discussions Générales",
+        "creator": "cbouvier",
+        "avatar": "Marketing.png",
+        "members": [
+          "cbouvier",
+          "grenaud",
+          "smailly",
+          "nbellemare"
+        ]
+      }
+    ]
+  }
+}

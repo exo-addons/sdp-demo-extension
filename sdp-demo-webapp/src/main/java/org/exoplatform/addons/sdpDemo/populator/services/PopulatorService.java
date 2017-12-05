@@ -19,20 +19,19 @@
 package org.exoplatform.addons.sdpDemo.populator.services;
 
 import org.apache.commons.io.IOUtils;
+import org.exoplatform.injection.core.module.*;
+import org.exoplatform.injection.services.DataInjector;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 /**
  * Created by Romain Dénarié (romain.denarie@exoplatform.com) on 04/02/16.
@@ -51,33 +50,26 @@ public class PopulatorService {
   /** The scenario description attribute. */
   public String                   SCENARIO_DESCRIPTION_ATTRIBUTE = "scenarioName";
 
-  /** The user service. */
-  @Inject
-  UserService                     userService_;
-
-  /** The space service. */
-  @Inject
-  SpaceService                    spaceService_;
-
-  /** The calendar service. */
-  @Inject
-  CalendarService                 calendarService_;
-
-  /** The wiki service. */
-  @Inject
-  WikiService                     wikiService_;
-
-  /** The forum service. */
-  @Inject
-  ForumService                    forumService_;
-
-  /** The document service. */
+/**
   @Inject
   DocumentService                 documentService_;
+*/
+  ActivityModule activityModule;
 
-  /** The activity service. */
-  @Inject
-  ActivityService                 activityService_;
+  CalendarModule calendarModule;
+
+  DocumentModule documentModule;
+
+  ForumModule forumModule;
+
+  SpaceModule spaceModule;
+
+  UserModule userModule;
+
+  WikiModule wikiModule;
+
+  DataInjector dataInjector;
+
 
   /** The scenarios. */
   private Map<String, JSONObject> scenarios;
@@ -109,40 +101,23 @@ public class PopulatorService {
   /**
    * Instantiates a new populator service.
    */
-  public PopulatorService() {
+  @Inject
+  public PopulatorService(DataInjector dataInjector, ActivityModule activityModule, CalendarModule calendarModule, DocumentModule documentModule, ForumModule forumModule, SpaceModule spaceModule, UserModule userModule, WikiModule wikiModule) {
+    this.activityModule = activityModule;
+    this.calendarModule = calendarModule;
+    this.documentModule = documentModule;
+    this.forumModule = forumModule;
+    this.spaceModule = spaceModule;
+    this.userModule = userModule;
+    this.wikiModule = wikiModule;
+    this.dataInjector = dataInjector;
     init();
   }
-
   /**
    * Inits the.
    */
   public void init() {
-    scenarios = new HashMap<String, JSONObject>();
-    try {
-      File folder = new File(PopulatorService.class.getClassLoader().getResource(SCENARIO_FOLDER).toURI());
-
-      for (String fileName : folder.list()) {
-        InputStream stream = PopulatorService.class.getClassLoader().getResourceAsStream(SCENARIO_FOLDER + "/" + fileName);
-        String fileContent = getData(stream);
-        try {
-          JSONObject json = new JSONObject(fileContent);
-          String name = json.getString(SCENARIO_NAME_ATTRIBUTE);
-          scenarios.put(name, json);
-        } catch (JSONException e) {
-          LOG.error("Syntax error in scenario " + fileName, e);
-        }
-      }
-    } catch (URISyntaxException e) {
-      LOG.error("Unable to read scenario file", e);
-    }
-
-    completion.put(USERS, 0);
-    completion.put(SPACES, 0);
-    completion.put(CALENDAR, 0);
-    completion.put(WIKI, 0);
-    completion.put(DOCUMENTS, 0);
-    completion.put(FORUM, 0);
-    completion.put(ACTIVITIES, 0);
+    scenarios = dataInjector.setup("data");
   }
 
   /**
@@ -165,41 +140,49 @@ public class PopulatorService {
       JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
       if (scenarioData.has("users")) {
         LOG.info("Create " + scenarioData.getJSONArray("users").length() + " users.");
-        userService_.createUsers(scenarioData.getJSONArray("users"), this);
+        userModule.createUsers(scenarioData.getJSONArray("users"),"data");
+        this.setCompletion(this.USERS, 100);
 
       }
       if (scenarioData.has("relations")) {
         LOG.info("Create " + scenarioData.getJSONArray("relations").length() + " relations.");
-        userService_.createRelations(scenarioData.getJSONArray("relations"));
+        userModule.createRelations(scenarioData.getJSONArray("relations"));
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
-        spaceService_.createSpaces(scenarioData.getJSONArray("spaces"), this);
+        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"data");
+        this.setCompletion(this.SPACES, 100);
       }
       if (scenarioData.has("calendars")) {
         LOG.info("Create " + scenarioData.getJSONArray("calendars").length() + " calendars.");
-        calendarService_.setCalendarColors(scenarioData.getJSONArray("calendars"), this);
-        calendarService_.createEvents(scenarioData.getJSONArray("calendars"), this);
+        calendarModule.setCalendarColors(scenarioData.getJSONArray("calendars"));
+        this.setCompletion(this.CALENDAR,100);
+        calendarModule.createEvents(scenarioData.getJSONArray("calendars"));
+        this.setCompletion(this.CALENDAR,100);
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
-       wikiService_.createUserWiki(scenarioData.getJSONArray("wikis"), this);
+        wikiModule.createUserWiki(scenarioData.getJSONArray("wikis"),"data");
+        this.setCompletion(this.WIKI, 100);
       }
       if (scenarioData.has("activities")) {
 
         LOG.info("Create " + scenarioData.getJSONArray("activities").length() + " activities.");
-        activityService_.pushActivities(scenarioData.getJSONArray("activities"), this);
+        activityModule.pushActivities(scenarioData.getJSONArray("activities"));
+        this.setCompletion(this.ACTIVITIES,100);
       }
       if (scenarioData.has("documents")) {
         LOG.info("Create " + scenarioData.getJSONArray("documents").length() + " documents.");
-        documentService_.uploadDocuments(scenarioData.getJSONArray("documents"), this);
+        documentModule.uploadDocuments(scenarioData.getJSONArray("documents"),"data");
+        this.setCompletion(this.DOCUMENTS, 100);
       }
       if (scenarioData.has("forums")) {
-        forumService_.createForumContents(scenarioData.getJSONArray("forums"), this);
+        forumModule.createForumContents(scenarioData.getJSONArray("forums"));
+        this.setCompletion(this.FORUM, 100);
       }
 
       if (scenarios.get(scenarioName).has("scriptData")) {
-        downloadUrl = documentService_.storeScript(scenarios.get(scenarioName).getString("scriptData"));
+        downloadUrl = documentModule.storeScript(scenarios.get(scenarioName).getString("scriptData"),"data");
       }
 
     } catch (JSONException e) {
