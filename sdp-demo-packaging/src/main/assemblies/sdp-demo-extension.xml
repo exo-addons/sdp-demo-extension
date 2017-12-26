@@ -9,8 +9,8 @@
     <!-- Put -->
     <fileSets>
         <fileSet>
-            <directory>${project.build.directory}/data</directory>
-            <outputDirectory>data</outputDirectory>
+            <directory>${project.build.directory}/injector-dataset</directory>
+            <outputDirectory>injector-dataset</outputDirectory>
         </fileSet>
     </fileSets>
     <dependencySets>

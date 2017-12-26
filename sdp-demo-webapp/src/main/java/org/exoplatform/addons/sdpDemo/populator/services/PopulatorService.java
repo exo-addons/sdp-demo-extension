@@ -117,7 +117,7 @@ public class PopulatorService {
    * Inits the.
    */
   public void init() {
-    scenarios = dataInjector.setup("data");
+    scenarios = dataInjector.setup("injector-dataset");
   }
 
   /**
@@ -140,7 +140,7 @@ public class PopulatorService {
       JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
       if (scenarioData.has("users")) {
         LOG.info("Create " + scenarioData.getJSONArray("users").length() + " users.");
-        userModule.createUsers(scenarioData.getJSONArray("users"),"data");
+        userModule.createUsers(scenarioData.getJSONArray("users"),"injector-dataset");
         this.setCompletion(this.USERS, 100);
 
       }
@@ -150,7 +150,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
-        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"data");
+        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset");
         this.setCompletion(this.SPACES, 100);
       }
       if (scenarioData.has("calendars")) {
@@ -162,7 +162,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
-        wikiModule.createUserWiki(scenarioData.getJSONArray("wikis"),"data");
+        wikiModule.createUserWiki(scenarioData.getJSONArray("wikis"),"injector-dataset");
         this.setCompletion(this.WIKI, 100);
       }
       if (scenarioData.has("activities")) {
@@ -173,7 +173,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("documents")) {
         LOG.info("Create " + scenarioData.getJSONArray("documents").length() + " documents.");
-        documentModule.uploadDocuments(scenarioData.getJSONArray("documents"),"data");
+        documentModule.uploadDocuments(scenarioData.getJSONArray("documents"),"injector-dataset");
         this.setCompletion(this.DOCUMENTS, 100);
       }
       if (scenarioData.has("forums")) {
@@ -182,7 +182,7 @@ public class PopulatorService {
       }
 
       if (scenarios.get(scenarioName).has("scriptData")) {
-        downloadUrl = documentModule.storeScript(scenarios.get(scenarioName).getString("scriptData"),"data");
+        downloadUrl = documentModule.storeScript(scenarios.get(scenarioName).getString("scriptData"),"injector-dataset");
       }
 
     } catch (JSONException e) {
