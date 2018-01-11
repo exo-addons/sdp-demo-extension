@@ -150,7 +150,7 @@ public class PopulatorService {
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
-        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset");
+        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset", "exo Test");
         this.setCompletion(this.SPACES, 100);
       }
       if (scenarioData.has("calendars")) {
