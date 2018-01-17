@@ -140,6 +140,7 @@ public class PopulatorService {
       JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
       if (scenarioData.has("users")) {
         LOG.info("Create " + scenarioData.getJSONArray("users").length() + " users.");
+        this.setCompletion(this.USERS, 20);
         userModule.createUsers(scenarioData.getJSONArray("users"),"injector-dataset");
         this.setCompletion(this.USERS, 100);
 
@@ -150,29 +151,34 @@ public class PopulatorService {
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
+        this.setCompletion(this.SPACES, 40);
         spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset", "exo Test");
         this.setCompletion(this.SPACES, 100);
       }
       if (scenarioData.has("calendars")) {
         LOG.info("Create " + scenarioData.getJSONArray("calendars").length() + " calendars.");
+        this.setCompletion(this.CALENDAR,10);
         calendarModule.setCalendarColors(scenarioData.getJSONArray("calendars"));
-        this.setCompletion(this.CALENDAR,100);
+        this.setCompletion(this.CALENDAR,70);
         calendarModule.createEvents(scenarioData.getJSONArray("calendars"));
         this.setCompletion(this.CALENDAR,100);
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
+        this.setCompletion(this.WIKI, 60);
         wikiModule.createUserWiki(scenarioData.getJSONArray("wikis"),"injector-dataset");
         this.setCompletion(this.WIKI, 100);
       }
       if (scenarioData.has("activities")) {
 
         LOG.info("Create " + scenarioData.getJSONArray("activities").length() + " activities.");
+        this.setCompletion(this.ACTIVITIES,10);
         activityModule.pushActivities(scenarioData.getJSONArray("activities"));
         this.setCompletion(this.ACTIVITIES,100);
       }
       if (scenarioData.has("documents")) {
         LOG.info("Create " + scenarioData.getJSONArray("documents").length() + " documents.");
+        this.setCompletion(this.DOCUMENTS, 10);
         documentModule.uploadDocuments(scenarioData.getJSONArray("documents"),"injector-dataset");
         this.setCompletion(this.DOCUMENTS, 100);
       }
@@ -180,6 +186,8 @@ public class PopulatorService {
         forumModule.createForumContents(scenarioData.getJSONArray("forums"));
         this.setCompletion(this.FORUM, 100);
       }
+      //--- Workaround to give end-users a better user experience
+      this.setCompletion(this.FORUM, 100);
 
       if (scenarios.get(scenarioName).has("scriptData")) {
         downloadUrl = documentModule.storeScript(scenarios.get(scenarioName).getString("scriptData"),"injector-dataset");

@@ -23,7 +23,7 @@
   <properties>
     <org.exoplatform.platform.version>5.0.x-SNAPSHOT</org.exoplatform.platform.version>
     <juzu.version>1.2.0-M02</juzu.version>
-    <org.data-injection-lib.version.version>1.0.0-RC01</org.data-injection-lib.version.version>
+    <org.data-injection-lib.version.version>1.0.0-RC02</org.data-injection-lib.version.version>
   </properties>
   <dependencyManagement>
     <dependencies>
