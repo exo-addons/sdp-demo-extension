@@ -1145,6 +1145,7 @@
     "spaces": [
       {
         "displayName": "ACME Communications",
+        "description": "Stay informed about our company news here wherever you are",
         "creator": "elizabeth",
         "avatar": "ACME_Communications.png",
         "banner": "banner.png",
@@ -1186,6 +1187,7 @@
       },
       {
         "displayName": "Delivery",
+        "description": "This is the Delivery team's space, also containing a knowledge base relating to customer delivery",
         "creator": "michael",
         "avatar": "Delivery.png",
         "banner": "banner.png",
@@ -1216,6 +1218,7 @@
       },
       {
         "displayName": "Executive Board",
+        "description": "A private workspace used by our top management to share updates and sync-up on meetings",
         "creator": "robert",
         "avatar": "Executive_Board.png",
         "banner": "banner.png",
@@ -1236,6 +1239,7 @@
       },
       {
         "displayName": "Finance",
+        "description": "Finance department activity and discussions. Find financial documents, procedures and more",
         "creator": "judith",
         "avatar": "Finance.png",
         "banner": "banner.png",
@@ -1262,6 +1266,7 @@
       },
       {
         "displayName": "Human Resources",
+        "description": "Find any HR information like your employee benefits, forms, templates and more",
         "creator": "mary",
         "avatar": "Human_Resources.png",
         "banner": "banner.png",
@@ -1302,6 +1307,7 @@
       },
       {
         "displayName": "Legal",
+        "description": "Legal department activity and discussions. Ask legal questions, find legal documents and more",
         "creator": "mark",
         "avatar": "Legal.png",
         "banner": "banner.png",
@@ -1324,6 +1330,7 @@
       },
       {
         "displayName": "Marketing",
+        "description": "Our marketing team's collaboration workspace and a library of our official marketing content",
         "creator": "sandy",
         "avatar": "Marketing.png",
         "banner": "banner.png",
@@ -1356,6 +1363,7 @@
       },
       {
         "displayName": "Products",
+        "description": "Our product management team's collaboration space, also an ideal place to follow early product updates closely",
         "creator": "kate",
         "avatar": "Products.png",
         "banner": "banner.png",
@@ -1391,6 +1399,7 @@
       },
       {
         "displayName": "Sales",
+        "description": "Our sales force accross our offices meet here to find documents, business updates, sales enablement material, and more",
         "creator": "evan",
         "avatar": "Sales.png",
         "banner": "banner.png",
@@ -1411,6 +1420,7 @@
       },
       {
         "displayName": "Customer Support",
+        "description": "Our technical support team's collaboration workspace.",
         "creator": "andrew",
         "avatar": "Customer_Support.png",
         "banner": "banner.png",
@@ -1432,6 +1442,7 @@
       },
       {
         "displayName": "Customer Success",
+        "description": "Our Customer Success Team's space. Find information and news about our customers here",
         "creator": "tim",
         "avatar": "Customer_Success.png",
         "banner": "banner.png",
@@ -1452,6 +1463,7 @@
       },
       {
         "displayName": "Ask ACME",
+        "description": "Got a question? Ask it here and get an answer from the right expert in the company",
         "creator": "elizabeth",
         "avatar": "Ask_ACME.png",
         "banner": "banner.png",
@@ -1493,6 +1505,7 @@
       },
       {
         "displayName": "Idea Box",
+        "description": "Got an idea? Share it in this space, see what others think and watch it potentially become a reality",
         "creator": "elizabeth",
         "avatar": "Idea_Box.png",
         "banner": "banner.png",
@@ -1533,6 +1546,7 @@
       },
       {
         "displayName": "Internal Job Postings",
+        "description": "A cross-office open job board. Post job offers and resumes and evolve within your company",
         "creator": "mary",
         "avatar": "Internal_Job_Postings.png",
         "banner": "banner.png",
@@ -1573,6 +1587,7 @@
       },
       {
         "displayName": "Design",
+        "description": "An open community of interest for product design enthusiasts in our company",
         "creator": "ronald",
         "avatar": "Design.png",
         "banner": "banner.png",
@@ -1589,6 +1604,7 @@
       },
       {
         "displayName": "Market Watch",
+        "description": "Follow key news and trends of our industry and competition. Share interesting market stories",
         "creator": "sandy",
         "avatar": "Market_Watch.png",
         "banner": "banner.png",
@@ -1613,6 +1629,7 @@
       },
       {
         "displayName": "Product Launch Project",
+        "description": "An on-going cross-team project space around the launch of our new product line",
         "creator": "adam",
         "avatar": "Product_Launch_Project.png",
         "banner": "banner.png",
@@ -1634,6 +1651,7 @@
       },
       {
         "displayName": "Logistics",
+        "description": "Work with HR here to plan your next event or job travel",
         "creator": "mary",
         "avatar": "Logistics.png",
         "banner": "banner.png",
@@ -2116,19 +2134,19 @@
       {
         "title": "Sofware Vendors",
         "type": "group",
-        "owner": "/spaces/product_launch_project",
+        "owner": "Product Launch Project",
         "parent": "WikiHome"
       },
       {
         "title": "Employee Onboarding",
         "type": "group",
-        "owner": "/spaces/product_launch_project",
+        "owner": "Product Launch Project",
         "parent": "WikiHome"
       },
       {
         "title": "Web Design Proposals",
         "type": "group",
-        "owner": "/spaces/product_launch_project",
+        "owner": "Product Launch Project",
         "parent": "WikiHome"
       }
     ],

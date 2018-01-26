@@ -20,6 +20,7 @@ package org.exoplatform.addons.sdpDemo.populator.services;
 
 import org.apache.commons.io.IOUtils;
 import org.exoplatform.injection.core.module.*;
+import org.exoplatform.injection.helper.InjectorMonitor;
 import org.exoplatform.injection.services.DataInjector;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
@@ -126,6 +127,7 @@ public class PopulatorService {
    * @param scenarioName the scenario name
    * @return the string
    */
+  //TODO : all instructions within this mothod should be deleted
   public String populate(String scenarioName) {
     completion.put(USERS, 0);
     completion.put(SPACES, 0);
@@ -136,54 +138,72 @@ public class PopulatorService {
     completion.put(ACTIVITIES, 0);
 
     String downloadUrl = "";
+    InjectorMonitor injectorMonitor = new InjectorMonitor("Data Injection Process");
     try {
       JSONObject scenarioData = scenarios.get(scenarioName).getJSONObject("data");
       if (scenarioData.has("users")) {
         LOG.info("Create " + scenarioData.getJSONArray("users").length() + " users.");
         this.setCompletion(this.USERS, 20);
+        injectorMonitor.start("Processing users data");
         userModule.createUsers(scenarioData.getJSONArray("users"),"injector-dataset");
+        injectorMonitor.stop();
         this.setCompletion(this.USERS, 100);
+
 
       }
       if (scenarioData.has("relations")) {
         LOG.info("Create " + scenarioData.getJSONArray("relations").length() + " relations.");
+        injectorMonitor.start("Processing users data");
         userModule.createRelations(scenarioData.getJSONArray("relations"));
+        injectorMonitor.stop();
       }
       if (scenarioData.has("spaces")) {
         LOG.info("Create " + scenarioData.getJSONArray("spaces").length() + " spaces.");
         this.setCompletion(this.SPACES, 40);
-        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset", "exo Test");
+        injectorMonitor.start("Processing users data");
+        spaceModule.createSpaces(scenarioData.getJSONArray("spaces"),"injector-dataset");
+        injectorMonitor.stop();
         this.setCompletion(this.SPACES, 100);
       }
       if (scenarioData.has("calendars")) {
         LOG.info("Create " + scenarioData.getJSONArray("calendars").length() + " calendars.");
+        injectorMonitor.start("Processing users data");
         this.setCompletion(this.CALENDAR,10);
         calendarModule.setCalendarColors(scenarioData.getJSONArray("calendars"));
         this.setCompletion(this.CALENDAR,70);
         calendarModule.createEvents(scenarioData.getJSONArray("calendars"));
+        injectorMonitor.stop();
         this.setCompletion(this.CALENDAR,100);
       }
       if (scenarioData.has("wikis")) {
         LOG.info("Create " + scenarioData.getJSONArray("wikis").length() + " wikis.");
         this.setCompletion(this.WIKI, 60);
+        injectorMonitor.start("Processing users data");
         wikiModule.createUserWiki(scenarioData.getJSONArray("wikis"),"injector-dataset");
+        injectorMonitor.stop();
         this.setCompletion(this.WIKI, 100);
       }
       if (scenarioData.has("activities")) {
 
         LOG.info("Create " + scenarioData.getJSONArray("activities").length() + " activities.");
         this.setCompletion(this.ACTIVITIES,10);
+        injectorMonitor.start("Processing users data");
         activityModule.pushActivities(scenarioData.getJSONArray("activities"));
+        injectorMonitor.stop();
         this.setCompletion(this.ACTIVITIES,100);
       }
       if (scenarioData.has("documents")) {
         LOG.info("Create " + scenarioData.getJSONArray("documents").length() + " documents.");
         this.setCompletion(this.DOCUMENTS, 10);
+        injectorMonitor.start("Processing users data");
         documentModule.uploadDocuments(scenarioData.getJSONArray("documents"),"injector-dataset");
+        injectorMonitor.stop();
         this.setCompletion(this.DOCUMENTS, 100);
       }
       if (scenarioData.has("forums")) {
+        injectorMonitor.start("Processing users data");
         forumModule.createForumContents(scenarioData.getJSONArray("forums"));
+        injectorMonitor.stop();
         this.setCompletion(this.FORUM, 100);
       }
       //--- Workaround to give end-users a better user experience
@@ -192,6 +212,8 @@ public class PopulatorService {
       if (scenarios.get(scenarioName).has("scriptData")) {
         downloadUrl = documentModule.storeScript(scenarios.get(scenarioName).getString("scriptData"),"injector-dataset");
       }
+      LOG.info("Data Injection has been done successfully.............");
+      LOG.info(injectorMonitor.prettyPrint());
 
     } catch (JSONException e) {
       LOG.error("Syntax error when reading scenario " + scenarioName, e);
